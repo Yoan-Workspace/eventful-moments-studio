@@ -6,10 +6,12 @@ import { ContactForm } from "@/components/ContactForm";
 import { elegantButtonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
 import heroImage from "@/assets/hero-bg.jpg";
+import { Header } from "@/components/Header";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <Header />
       {/* Hero Section */}
       <section 
         className="relative min-h-screen flex items-center justify-center"

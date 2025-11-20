@@ -1,42 +1,37 @@
 import { Link } from "react-router-dom";
-import { Camera, Home, Music, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { elegantButtonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
+import { Header } from "@/components/Header";
+import spectacleImg from "@/assets/category-spectacle.jpg";
+import studioImg from "@/assets/category-studio.jpg";
+import festivalImg from "@/assets/category-festival.jpg";
 
 const categories = [
   {
     id: "spectacle",
     title: "Spectacles",
     description: "Capturer la magie de vos performances scéniques",
-    icon: Music,
+    image: spectacleImg,
   },
   {
     id: "studio",
     title: "Studio",
     description: "Shootings professionnels en environnement contrôlé",
-    icon: Camera,
+    image: studioImg,
   },
   {
     id: "festival",
     title: "Festivals",
     description: "L'énergie et l'ambiance de vos événements culturels",
-    icon: Building,
+    image: festivalImg,
   },
 ];
 
 const Entreprises = () => {
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="bg-card border-b border-border sticky top-0 z-50 backdrop-blur-sm bg-card/95">
-        <div className="container mx-auto px-4 py-4">
-          <Link to="/" className="inline-flex items-center gap-2 text-foreground hover:text-accent transition-smooth">
-            <Home className="w-5 h-5" />
-            <span className="font-medium">Retour à l'accueil</span>
-          </Link>
-        </div>
-      </header>
+      <Header />
 
       {/* Main Content */}
       <section className="py-20">
@@ -52,21 +47,29 @@ const Entreprises = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {categories.map((category) => {
-              const Icon = category.icon;
               return (
                 <Link key={category.id} to={`/portfolio/${category.id}`}>
-                  <div className="group bg-card p-8 rounded-lg elegant-shadow hover:shadow-2xl transition-smooth hover:scale-105 h-full">
-                    <Icon className="w-16 h-16 mx-auto mb-6 text-accent group-hover:scale-110 transition-smooth" />
-                    <h3 className="text-2xl font-serif mb-4 text-center text-foreground">
-                      {category.title}
-                    </h3>
-                    <p className="text-muted-foreground text-center mb-6">
-                      {category.description}
-                    </p>
-                    <div className="flex justify-center">
-                      <Button className={cn(elegantButtonVariants({ variant: "elegant" }))}>
-                        Voir le portfolio
-                      </Button>
+                  <div className="group bg-card rounded-lg elegant-shadow hover:shadow-2xl transition-smooth hover:scale-105 h-full overflow-hidden">
+                    <div className="relative h-64 overflow-hidden">
+                      <img 
+                        src={category.image} 
+                        alt={category.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-smooth"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    </div>
+                    <div className="p-8">
+                      <h3 className="text-2xl font-serif mb-4 text-center text-foreground">
+                        {category.title}
+                      </h3>
+                      <p className="text-muted-foreground text-center mb-6">
+                        {category.description}
+                      </p>
+                      <div className="flex justify-center">
+                        <Button className={cn(elegantButtonVariants({ variant: "elegant" }))}>
+                          Voir le portfolio
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </Link>
