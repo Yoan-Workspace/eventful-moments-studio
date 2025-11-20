@@ -3,8 +3,8 @@ import imageUrlBuilder from '@sanity/image-url';
 
 // Configuration Sanity - À remplacer avec vos vraies valeurs
 export const sanityClient = createClient({
-  projectId: process.env.VITE_SANITY_PROJECT_ID || 'your-project-id',
-  dataset: process.env.VITE_SANITY_DATASET || 'production',
+  projectId: import.meta.env.VITE_SANITY_PROJECT_ID || 'your-project-id',
+  dataset: import.meta.env.VITE_SANITY_DATASET || 'production',
   useCdn: true,
   apiVersion: '2024-01-01',
 });
