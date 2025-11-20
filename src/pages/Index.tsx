@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Building2, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GoogleReviews } from "@/components/GoogleReviews";
+import { ContactForm } from "@/components/ContactForm";
 import { elegantButtonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
 import heroImage from "@/assets/hero-bg.jpg";
@@ -60,6 +61,9 @@ const Index = () => {
 
       {/* Google Reviews */}
       <GoogleReviews />
+
+      {/* Contact Form */}
+      <ContactForm />
 
       {/* Footer */}
       <footer className="bg-primary text-primary-foreground py-8">
