@@ -1,9 +1,8 @@
 import { useParams, Link } from "react-router-dom";
 import { Home, ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-/*import { getPortfolioByCategory, PortfolioImage } from "@/lib/sanity";*/
 import { getPortfolioByCategory, PortfolioImage, urlFor } from "@/lib/sanity";
+import Lightbox from "@/components/Lightbox";
 
 const categoryTitles: Record<string, string> = {
   spectacle: "Spectacles",
@@ -25,6 +24,8 @@ const Portfolio = () => {
   const { category } = useParams<{ category: string }>();
   const [images, setImages] = useState<PortfolioImage[]>([]);
   const [loading, setLoading] = useState(true);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     if (category) {
@@ -42,6 +43,23 @@ const Portfolio = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const openLightbox = (index: number) => {
+    setCurrentImageIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const previousImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
   const isEntrepriseCategory = ["spectacle", "studio", "festival"].includes(category || "");
@@ -81,21 +99,23 @@ const Portfolio = () => {
             </div>
           ) : images.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {images.map((image) => (
-                <div key={image._id} className="group relative overflow-hidden rounded-lg elegant-shadow hover:shadow-2xl transition-smooth">
+              {images.map((image, index) => (
+                <div 
+                  key={image._id} 
+                  className="group relative overflow-hidden rounded-lg elegant-shadow hover:shadow-2xl transition-smooth cursor-pointer"
+                  onClick={() => openLightbox(index)}
+                >
                   <img
-                  src={urlFor(image.image).width(800).quality(85).url()}
-                  alt={image.title}
-                  className="w-full h-80 object-cover group-hover:scale-110 transition-smooth"
-                   /* src={image.image}
+                    src={urlFor(image.image).width(800).quality(85).url()}
                     alt={image.title}
-                    className="w-full h-80 object-cover group-hover:scale-110 transition-smooth"*/
+                    className="w-full h-80 object-cover group-hover:scale-110 transition-smooth"
                   />
-                  {image.description && (
-                    <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-smooth flex items-center justify-center p-6">
-                      <p className="text-white text-center">{image.description}</p>
-                    </div>
-                  )}
+                  {image.description} 
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-smooth" >
+                    <p className="absolute bottom-4 left-4 right-4 text-white font-medium opacity-0 group-hover:opacity-100 transition-smooth text-lg">
+                   {image.title}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -111,6 +131,18 @@ const Portfolio = () => {
           )}
         </div>
       </section>
+
+      {/* Lightbox */}
+      {lightboxOpen && (
+        <Lightbox
+          images={images}
+          currentIndex={currentImageIndex}
+          onClose={closeLightbox}
+          onNext={nextImage}
+          onPrevious={previousImage}
+          urlFor={urlFor}
+        />
+      )}
     </div>
   );
 };
