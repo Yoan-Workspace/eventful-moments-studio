@@ -2,7 +2,8 @@ import { useParams, Link } from "react-router-dom";
 import { Home, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { getPortfolioByCategory, PortfolioImage } from "@/lib/sanity";
+/*import { getPortfolioByCategory, PortfolioImage } from "@/lib/sanity";*/
+import { getPortfolioByCategory, PortfolioImage, urlFor } from "@/lib/sanity";
 
 const categoryTitles: Record<string, string> = {
   spectacle: "Spectacles",
@@ -83,9 +84,12 @@ const Portfolio = () => {
               {images.map((image) => (
                 <div key={image._id} className="group relative overflow-hidden rounded-lg elegant-shadow hover:shadow-2xl transition-smooth">
                   <img
-                    src={image.image}
+                  src={urlFor(image.image).width(800).quality(85).url()}
+                  alt={image.title}
+                  className="w-full h-80 object-cover group-hover:scale-110 transition-smooth"
+                   /* src={image.image}
                     alt={image.title}
-                    className="w-full h-80 object-cover group-hover:scale-110 transition-smooth"
+                    className="w-full h-80 object-cover group-hover:scale-110 transition-smooth"*/
                   />
                   {image.description && (
                     <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-smooth flex items-center justify-center p-6">
