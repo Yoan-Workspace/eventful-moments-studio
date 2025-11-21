@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Camera } from "lucide-react";
+//import { Camera } from "lucide-react";
+import logo from "@/assets/Logo JM.jpeg";
 
 export const Header = () => {
   return (
@@ -8,8 +9,12 @@ export const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 text-foreground hover:text-accent transition-smooth">
-            <Camera className="w-8 h-8 text-accent" />
-            <span className="font-serif text-2xl font-bold">Photographe Événementiel</span>
+            <img 
+              src={logo} 
+              alt="JM Photographe" 
+              className="h-12 w-auto object-contain rounded-lg"
+            />
+            <span className="font-serif text-2xl font-bold">JM Photographe Événementiel</span>
           </Link>
 
           {/* Navigation */}

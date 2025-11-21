@@ -1,6 +1,5 @@
 import { createClient } from '@sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
-import { ReactNode } from 'react';
 
 // Configuration Sanity
 export const sanityClient = createClient({
@@ -27,7 +26,6 @@ export interface PortfolioImage {
 
 // Types pour les albums/événements
 export interface PortfolioEvent {
-  imageCount: ReactNode;
   _id: string;
   title: string;
   slug: {
@@ -43,8 +41,10 @@ export interface PortfolioEvent {
     caption?: string;
   }>;
   description?: string;
+  visibility: 'public' | 'private';
   featured: boolean;
   order: number;
+  imageCount?: number;
 }
 
 // Queries pour les photos individuelles (ancien système)
@@ -54,8 +54,9 @@ export const getPortfolioByCategory = async (category: string) => {
 };
 
 // Queries pour les albums/événements (nouveau système)
+// Ne récupère QUE les albums publics pour la liste
 export const getEventsByCategory = async (category: string) => {
-  const query = `*[_type == "portfolioEvent" && category == $category] | order(order asc, eventDate desc) {
+  const query = `*[_type == "portfolioEvent" && category == $category && visibility == "public"] | order(order asc, eventDate desc) {
     _id,
     title,
     slug,
@@ -63,6 +64,7 @@ export const getEventsByCategory = async (category: string) => {
     eventDate,
     coverImage,
     description,
+    visibility,
     featured,
     order,
     "imageCount": count(images)
@@ -70,6 +72,7 @@ export const getEventsByCategory = async (category: string) => {
   return await sanityClient.fetch<PortfolioEvent[]>(query, { category });
 };
 
+// Récupère un album par son slug (public OU privé)
 export const getEventBySlug = async (slug: string) => {
   const query = `*[_type == "portfolioEvent" && slug.current == $slug][0] {
     _id,
@@ -85,20 +88,23 @@ export const getEventBySlug = async (slug: string) => {
       caption
     },
     description,
+    visibility,
     featured,
     order
   }`;
   return await sanityClient.fetch<PortfolioEvent>(query, { slug });
 };
 
+// Ne récupère que les albums publics ET en vedette
 export const getFeaturedEvents = async () => {
-  const query = `*[_type == "portfolioEvent" && featured == true] | order(order asc) [0...6] {
+  const query = `*[_type == "portfolioEvent" && featured == true && visibility == "public"] | order(order asc) [0...6] {
     _id,
     title,
     slug,
     category,
     coverImage,
     description,
+    visibility,
     "imageCount": count(images)
   }`;
   return await sanityClient.fetch<PortfolioEvent[]>(query);
