@@ -111,14 +111,16 @@ export default {
     },
     {
       name: 'slug',
-      title: 'URL',
+      title: 'URL générée automatiquement',
       type: 'slug',
-      description: 'URL de l\'album (généré automatiquement)',
+      description: 'Cette URL est générée automatiquement depuis le titre',
       options: {
         source: 'title',
         maxLength: 96,
+        auto: true, // Génération automatique
       },
-      validation: Rule => Rule.required()
+      validation: Rule => Rule.required(),
+      readOnly: ({document}) => !!document?.slug?.current, // Verrouillé après génération
     },
     {
       name: 'shareLink',
