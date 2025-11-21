@@ -120,7 +120,7 @@ export default {
         auto: true, // Génération automatique
       },
       validation: Rule => Rule.required(),
-      readOnly: ({document}) => !!document?.slug?.current, // Verrouillé après génération
+      readOnly: false //({document}) => !!document?.slug?.current, // Verrouillé après génération
     },
     {
       name: 'shareLink',

@@ -1,7 +1,6 @@
 // JulieSitePhotographe/components/PrivateLinkDisplay.jsx
 // À ajouter dans Sanity Studio pour faciliter le partage des liens privés
 
-import React from 'react'
 import {Card, Stack, Text, Button, Box} from '@sanity/ui'
 
 export default function PrivateLinkDisplay(props: { value: any }) {

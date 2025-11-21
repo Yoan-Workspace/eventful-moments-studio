@@ -144,7 +144,7 @@ const PortfolioEvents = () => {
                 Aucun album disponible pour le moment dans cette catégorie.
               </p>
               <p className="text-sm text-muted-foreground">
-                Le photographe peut ajouter des albums via le dashboard Sanity.
+                Revenez un peu plus tard.
               </p>
             </div>
           )}
