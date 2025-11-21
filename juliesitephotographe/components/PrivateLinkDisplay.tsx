@@ -4,7 +4,7 @@
 import React from 'react'
 import {Card, Stack, Text, Button, Box} from '@sanity/ui'
 
-export default function PrivateLinkDisplay(props) {
+export default function PrivateLinkDisplay(props: { value: any }) {
   const {value} = props
   const slug = value?.slug?.current
   const category = value?.category
@@ -15,7 +15,7 @@ export default function PrivateLinkDisplay(props) {
   }
 
   // Remplace par ton vrai domaine en production
-  const baseUrl = 'https://ton-site.com' // ou 'http://localhost:5173' en dev
+  const baseUrl = 'http://localhost:8080/' // ou 'http://localhost:5173' en dev
   const privateLink = `${baseUrl}/portfolio/${category}/${slug}`
 
   const copyToClipboard = () => {

@@ -140,7 +140,7 @@ const EventDetail = () => {
                     onClick={() => openLightbox(index)}
                   >
                     <img
-                      src={urlFor(image.asset).width(800).quality(85).url()}
+                      src={urlFor(image.asset).width(300).quality(85).url()}
                       alt={image.alt || event.title}
                       className="w-full h-80 object-cover group-hover:scale-110 transition-smooth"
                     />

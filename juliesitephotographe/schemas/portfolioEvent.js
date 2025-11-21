@@ -1,5 +1,4 @@
 // schemas/portfolioEvent.js
-import PrivateLinkDisplay from '../components/PrivateLinkDisplay'
 
 export default {
   name: 'portfolioEvent',
@@ -38,6 +37,21 @@ export default {
         ],
         layout: 'radio'
       },
+      validation: Rule => Rule.required()
+    },
+    {
+      name: 'visibility',
+      title: 'Visibilité',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Public - Visible par tous', value: 'public'},
+          {title: 'Privé - Accessible uniquement par lien direct', value: 'private'}
+        ],
+        layout: 'radio'
+      },
+      description: 'Public : L\'album apparaît dans la liste. Privé : Accessible uniquement avec le lien complet',
+      initialValue: 'public',
       validation: Rule => Rule.required()
     },
     {
@@ -92,21 +106,6 @@ export default {
       description: 'Contexte, anecdotes, détails sur l\'événement'
     },
     {
-      name: 'visibility',
-      title: 'Visibilité',
-      type: 'string',
-      options: {
-        list: [
-          {title: 'Public - Visible par tous', value: 'public'},
-          {title: 'Privé - Accessible uniquement par lien direct', value: 'private'}
-        ],
-        layout: 'radio'
-      },
-      description: 'Public : L\'album apparaît dans la liste. Privé : Accessible uniquement avec le lien complet',
-      initialValue: 'public',
-      validation: Rule => Rule.required()
-    },
-    {
       name: 'featured',
       title: 'Mettre en avant',
       type: 'boolean',
@@ -119,6 +118,30 @@ export default {
       type: 'number',
       description: 'Plus le nombre est petit, plus l\'album apparaît en premier',
       initialValue: 0
+    },
+    {
+      name: 'privateLink',
+      title: '🔗 Lien de l\'album',
+      type: 'string',
+      description: ({document}) => {
+        const category = document?.category
+        const slug = document?.slug?.current
+        const visibility = document?.visibility
+        const baseUrl = 'https://ton-site.com' // Remplace par ton vrai domaine
+        
+        if (!category || !slug) {
+          return '⚠️ Veuillez d\'abord renseigner la catégorie et générer le slug (bouton Generate)'
+        }
+        
+        const fullLink = `${baseUrl}/portfolio/${category}/${slug}`
+        
+        if (visibility === 'private') {
+          return `🔒 LIEN PRIVÉ à partager avec votre client :\n\n${fullLink}\n\n✅ Copiez ce lien et envoyez-le directement à votre client`
+        } else {
+          return `🌐 LIEN PUBLIC de cet album :\n\n${fullLink}`
+        }
+      },
+      readOnly: true,
     }
   ],
   orderings: [
