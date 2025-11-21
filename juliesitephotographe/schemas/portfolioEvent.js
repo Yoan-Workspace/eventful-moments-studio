@@ -1,4 +1,5 @@
 // schemas/portfolioEvent.js
+import ShareLinkDisplay from '../components/ShareLinkDisplay'
 
 export default {
   name: 'portfolioEvent',
@@ -10,17 +11,6 @@ export default {
       title: 'Nom de l\'événement',
       type: 'string',
       description: 'Ex: "Mariage de Sophie & Marc" ou "Festival Jazz 2024"',
-      validation: Rule => Rule.required()
-    },
-    {
-      name: 'slug',
-      title: 'URL',
-      type: 'slug',
-      description: 'URL de l\'album (généré automatiquement)',
-      options: {
-        source: 'title',
-        maxLength: 96,
-      },
       validation: Rule => Rule.required()
     },
     {
@@ -40,6 +30,14 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: 'eventDate',
+      title: 'Date de l\'événement',
+      type: 'date',
+      options: {
+        dateFormat: 'DD/MM/YYYY',
+      }
+    },
+    {
       name: 'visibility',
       title: 'Visibilité',
       type: 'string',
@@ -53,14 +51,6 @@ export default {
       description: 'Public : L\'album apparaît dans la liste. Privé : Accessible uniquement avec le lien complet',
       initialValue: 'public',
       validation: Rule => Rule.required()
-    },
-    {
-      name: 'eventDate',
-      title: 'Date de l\'événement',
-      type: 'date',
-      options: {
-        dateFormat: 'DD/MM/YYYY',
-      }
     },
     {
       name: 'coverImage',
@@ -120,28 +110,24 @@ export default {
       initialValue: 0
     },
     {
-      name: 'privateLink',
-      title: '🔗 Lien de l\'album',
-      type: 'string',
-      description: ({document}) => {
-        const category = document?.category
-        const slug = document?.slug?.current
-        const visibility = document?.visibility
-        const baseUrl = 'https://ton-site.com' // Remplace par ton vrai domaine
-        
-        if (!category || !slug) {
-          return '⚠️ Veuillez d\'abord renseigner la catégorie et générer le slug (bouton Generate)'
-        }
-        
-        const fullLink = `${baseUrl}/portfolio/${category}/${slug}`
-        
-        if (visibility === 'private') {
-          return `🔒 LIEN PRIVÉ à partager avec votre client :\n\n${fullLink}\n\n✅ Copiez ce lien et envoyez-le directement à votre client`
-        } else {
-          return `🌐 LIEN PUBLIC de cet album :\n\n${fullLink}`
-        }
+      name: 'slug',
+      title: 'URL',
+      type: 'slug',
+      description: 'URL de l\'album (généré automatiquement)',
+      options: {
+        source: 'title',
+        maxLength: 96,
       },
-      readOnly: true,
+      validation: Rule => Rule.required()
+    },
+    {
+      name: 'shareLink',
+      title: '🔗 Lien à partager',
+      type: 'string',
+      description: 'Le lien complet de votre album s\'affichera ici',
+      components: {
+        input: ShareLinkDisplay
+      }
     }
   ],
   orderings: [

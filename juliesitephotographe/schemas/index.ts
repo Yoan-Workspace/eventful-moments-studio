@@ -6,5 +6,5 @@ import portfolioEvent from './portfolioEvent'
 
 export const schemaTypes = [
   portfolioEvent,  // Nouveau : albums/événements
-  portfolioImage   // Ancien : photos individuelles
+  //portfolioImage   // Ancien : photos individuelles
 ]

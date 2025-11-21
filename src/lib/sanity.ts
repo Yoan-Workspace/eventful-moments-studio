@@ -1,5 +1,6 @@
 import { createClient } from '@sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
+import { ReactNode } from 'react';
 
 // Configuration Sanity
 export const sanityClient = createClient({
@@ -26,6 +27,7 @@ export interface PortfolioImage {
 
 // Types pour les albums/événements
 export interface PortfolioEvent {
+  imageCount: ReactNode;
   _id: string;
   title: string;
   slug: {
