@@ -1,13 +1,13 @@
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
-import {schemaTypes} from './schemas'
+import {schemaTypes} from './schemaTypes'
 
 export default defineConfig({
   name: 'default',
-  title: 'JulieSitePhotographe',
+  title: 'WebsitePhoto',
 
-  projectId: 'vlxe139s',
+  projectId: 'ft3mxjgo',
   dataset: 'production',
 
   plugins: [structureTool(), visionTool()],
