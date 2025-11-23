@@ -87,64 +87,83 @@ const PortfolioEvents = () => {
               <p className="text-muted-foreground">Chargement des albums...</p>
             </div>
           ) : events.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {events.map((event) => (
-                <Link
-                  key={event._id}
-                  to={`/portfolio/${category}/${event.slug.current}`}
-                  className="group"
-                >
-                  <div className="bg-card rounded-lg overflow-hidden elegant-shadow hover:shadow-2xl transition-smooth">
-                    {/* Image de couverture */}
-                    <div className="relative h-64 overflow-hidden">
-                      <img
-                        src={urlFor(event.coverImage).width(800).quality(85).url()}
-                        alt={event.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-smooth duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      
-                      {/* Badge nombre de photos */}
-                      <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm px-3 py-1 rounded-full flex items-center gap-2 text-white text-sm">
-                        <Image className="w-4 h-4" />
-                        <span>{event.imageCount} photos</span>
-                      </div>
-                    </div>
-
-                    {/* Informations */}
-                    <div className="p-6">
-                      <h3 className="text-2xl font-serif mb-2 text-foreground group-hover:text-accent transition-smooth">
-                        {event.title}
-                      </h3>
-                      
-                      {event.eventDate && (
-                        <div className="flex items-center gap-2 text-muted-foreground text-sm mb-3">
-                          <Calendar className="w-4 h-4" />
-                          <span>{formatDate(event.eventDate)}</span>
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {events.map((event, index) => (
+                  <Link
+                    key={event._id}
+                    to={`/portfolio/${category}/${event.slug.current}`}
+                    className="group"
+                    style={{
+                      animation: `fadeInScale 0.6s ease-out ${index * 0.15}s both`
+                    }}
+                  >
+                    <div className="bg-card rounded-lg overflow-hidden elegant-shadow hover:shadow-2xl transition-all duration-500">
+                      {/* Image de couverture */}
+                      <div className="relative h-64 overflow-hidden">
+                        <img
+                          src={urlFor(event.coverImage).width(800).quality(85).url()}
+                          alt={event.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                        
+                        {/* Badge nombre de photos */}
+                        <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm px-3 py-1 rounded-full flex items-center gap-2 text-white text-sm">
+                          <Image className="w-4 h-4" />
+                          <span>{event.imageCount} photos</span>
                         </div>
-                      )}
+                      </div>
 
-                      {event.description && (
-                        <p className="text-muted-foreground line-clamp-2">
-                          {event.description}
-                        </p>
-                      )}
+                      {/* Informations */}
+                      <div className="p-6">
+                        <h3 className="text-2xl font-serif mb-2 text-foreground group-hover:text-accent transition-smooth">
+                          {event.title}
+                        </h3>
+                        
+                        {event.eventDate && (
+                          <div className="flex items-center gap-2 text-muted-foreground text-sm mb-3">
+                            <Calendar className="w-4 h-4" />
+                            <span>{formatDate(event.eventDate)}</span>
+                          </div>
+                        )}
 
-                      <div className="mt-4 text-accent font-medium group-hover:underline">
-                        Voir l'album →
+                        {event.description && (
+                          <p className="text-muted-foreground line-clamp-2">
+                            {event.description}
+                          </p>
+                        )}
+
+                        <div className="mt-4 text-accent font-medium group-hover:underline">
+                          Voir l'album →
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
+                  </Link>
+                ))}
+              </div>
+
+              {/* Animation CSS */}
+              <style>{`
+                @keyframes fadeInScale {
+                  from {
+                    opacity: 0;
+                    transform: scale(0.3);
+                  }
+                  to {
+                    opacity: 1;
+                    transform: scale(1);
+                  }
+                }
+              `}</style>
+            </>
           ) : (
             <div className="text-center py-20 bg-card rounded-lg">
               <p className="text-muted-foreground mb-6">
                 Aucun album disponible pour le moment dans cette catégorie.
               </p>
               <p className="text-sm text-muted-foreground">
-                Revenez un peu plus tard.
+                Le photographe peut ajouter des albums via le dashboard Sanity.
               </p>
             </div>
           )}
