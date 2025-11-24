@@ -31,7 +31,8 @@ export default defineType({
           {title: 'Studio', value: 'studio'},
           {title: 'Festival', value: 'festival'},
           {title: 'Mariage', value: 'mariage'},
-          {title: 'Baptême', value: 'bapteme'}
+          {title: 'Baptême', value: 'bapteme'},
+          {title: 'Cocktail', value: 'cocktail'}
         ]
       },
       validation: Rule => Rule.required()

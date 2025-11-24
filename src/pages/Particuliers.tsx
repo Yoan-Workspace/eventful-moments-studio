@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import { Header } from "@/components/Header";
 import mariageImg from "@/assets/category-mariage.jpg";
 import baptemeImg from "@/assets/category-bapteme.jpg";
+import cocktailImg from "@/assets/category-cocktail.jpg";
+
 
 const categories = [
   {
@@ -18,6 +20,12 @@ const categories = [
     title: "Baptêmes",
     description: "Capturer la douceur de ces moments précieux",
     image: baptemeImg,
+  },
+  {
+    id: "cocktail",
+    title: "Cocktails & Réceptions",
+    description: "Des instants conviviaux pleins de vie et d'élégance",
+    image: cocktailImg,
   },
 ];
 

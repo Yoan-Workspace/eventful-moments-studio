@@ -70,7 +70,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="bg-primary text-primary-foreground py-8">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-sm">© 2024 Photographe Événementiel. Tous droits réservés.</p>
+          <p className="text-sm">© 2025 Julie Montbeyre Photographie. Tous droits réservés.</p>
         </div>
       </footer>
     </div>

@@ -11,6 +11,7 @@ const categoryTitles: Record<string, string> = {
   festival: "Festivals",
   mariage: "Mariages",
   bapteme: "Baptêmes",
+  cocktail: "Cocktails",
 };
 
 const EventDetail = () => {

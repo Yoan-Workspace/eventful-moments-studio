@@ -20,7 +20,7 @@ export interface PortfolioImage {
   _id: string;
   title: string;
   image: any;
-  category: 'spectacle' | 'studio' | 'festival' | 'mariage' | 'bapteme';
+  category: 'spectacle' | 'studio' | 'festival' | 'mariage' | 'bapteme' | 'cocktail';
   description?: string;
 }
 
@@ -31,7 +31,7 @@ export interface PortfolioEvent {
   slug: {
     current: string;
   };
-  category: 'spectacle' | 'studio' | 'festival' | 'mariage' | 'bapteme';
+  category: 'spectacle' | 'studio' | 'festival' | 'mariage' | 'bapteme'| 'cocktail';
   eventDate?: string;
   coverImage: any;
   images: Array<{

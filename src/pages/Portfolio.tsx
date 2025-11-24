@@ -10,6 +10,7 @@ const categoryTitles: Record<string, string> = {
   festival: "Festivals",
   mariage: "Mariages",
   bapteme: "Baptêmes",
+  cocktail: "Cocktails",
 };
 
 const categoryDescriptions: Record<string, string> = {
@@ -18,6 +19,7 @@ const categoryDescriptions: Record<string, string> = {
   festival: "L'ambiance unique de vos événements culturels",
   mariage: "Les plus beaux moments de votre union",
   bapteme: "La tendresse de ces instants précieux",
+  cocktail: "Des instants conviviaux pleins de vie et d'élégance",
 };
 
 const Portfolio = () => {

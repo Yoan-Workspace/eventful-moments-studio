@@ -47,7 +47,7 @@ type ContactFormValues = z.infer<typeof contactSchema>;
 export const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
-
+  const [showPhone, setShowPhone] = useState(false);
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -99,7 +99,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <section className="py-20 bg-muted/30">
+    <section id="contact" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4 max-w-3xl">
         <div className="text-center mb-12">
           <Mail className="w-16 h-16 mx-auto mb-4 text-accent" />
@@ -108,7 +108,26 @@ export const ContactForm = () => {
             Décrivez votre projet et nous vous répondrons rapidement avec un devis personnalisé
           </p>
         </div>
-
+        <div className="mt-4 flex justify-center mb-8">
+  {!showPhone ? (
+    <Button
+      onClick={() => setShowPhone(true)}
+      className="bg-accent text-accent-foreground hover:bg-accent/90"
+    >
+      📞 Appelez-moi
+    </Button>
+  ) : (
+    <p className="text-xl font-semibold text-accent">
+      <a
+        href="tel:+33677258431"
+        className="text-xl font-semibold text-accent underline"
+        aria-label="Appeler +33 6 77 25 84 31"
+      >
+        +33 6 77 25 84 31
+      </a>
+    </p>
+  )}
+</div>
         <div className="bg-card p-8 rounded-lg elegant-shadow">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

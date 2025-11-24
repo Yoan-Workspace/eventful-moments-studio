@@ -5,37 +5,37 @@ import { Button } from "./ui/button";
 const reviews = [
   {
     id: 1,
-    author: "Marie Dupont",
+    author: "Mylène Bonot",
     rating: 5,
-    text: "Une photographe exceptionnelle ! Les photos de notre mariage sont magnifiques, elle a su capturer tous les moments importants avec une grande sensibilité.",
-    date: "Il y a 2 mois",
-    avatar: "https://ui-avatars.com/api/?name=Marie+Dupont&background=random"
+    text: "Julie est une excellente photographe, à l écoute et professionnelle. Je l ai choisie pour le baptême de ma fille. Elle a su photographier l événement de sorte que l atmosphère est parfaitement reflétée sur les photos.",
+    date: "Il y a 5 mois",
+    avatar: "https://ui-avatars.com/api/?name=Mylène+Bonot&background=random"
   },
   {
     id: 2,
-    author: "Jean-Pierre Martin",
+    author: "Rénaté Mattei",
     rating: 5,
-    text: "Professionnelle et créative, elle a parfaitement immortalisé notre spectacle de danse. Nous recommandons vivement ses services !",
-    date: "Il y a 1 mois",
-    avatar: "https://ui-avatars.com/api/?name=Jean-Pierre+Martin&background=random"
+    text: "Un grand merci pour votre travail exceptionnel lors de notre événement. Vos photos capturent parfaitement l'atmosphère et les moments précieux de cette journée. Votre professionnalisme et votre œil artistique ont vraiment fait la différence. Je recommande vivement julie pour vos évènements !",
+    date: "Il y a 5 mois",
+    avatar: "https://ui-avatars.com/api/?name=JRénaté+Mattei&background=random"
   },
   {
     id: 3,
-    author: "Sophie Bernard",
+    author: "Stéphanie Aussage",
     rating: 5,
-    text: "Des photos d'une qualité remarquable pour le baptême de notre fille. Un vrai talent pour saisir l'émotion du moment.",
-    date: "Il y a 3 semaines",
-    avatar: "https://ui-avatars.com/api/?name=Sophie+Bernard&background=random"
+    text: "J’ai fait appel à Julie pour prendre en photo des collages de ma création. Tout en étant disponible, efficace, souriante et à l’écoute, elle a aussi su m’accompagner dans ma démarche artistique.Son travail est de grande qualité.Je recommande chaudement ses services. Expérience au top 👌",
+    date: "Il y a 5 mois",
+    avatar: "https://ui-avatars.com/api/?name=Stéphanie+Aussage&background=random"
   }
 ];
 
 // Note moyenne et nombre total d'avis
-const totalReviews = 47; // À adapter selon tes vrais chiffres
-const averageRating = 4.9; // À adapter
+const totalReviews = 15; // À adapter selon tes vrais chiffres
+const averageRating = 5; // À adapter
 
 export const GoogleReviews = () => {
   // Remplace par ton vrai lien Google Business Profile
-  const googleBusinessUrl = "https://www.google.com/maps/place/Ton+Business";
+  const googleBusinessUrl = "https://www.google.com/search?newwindow=1&sca_esv=0b1aadbb54d51ce1&sxsrf=AE3TifN-AcxMF8PiATBtIVYbbbvtYGvEEQ:1763979034600&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E_5I3e6yHT2uELYJhspHkV0XyWLtFeDBMnUU15gCIQTOa7WadX-ofo8PHVdK9fD5iAoqFubkoXdwRZcO1oP54SO5NQip1d9cq7SFVmHZZzmJ2xomLA%3D%3D&q=Julie+Montbeyre+Photographie+Avis&sa=X&ved=2ahUKEwjoqP79xYqRAxXTDjQIHT-WOcIQ0bkNegQIOBAC&biw=1606&bih=764&dpr=2";
 
   return (
     <section className="py-20 bg-secondary/30">
