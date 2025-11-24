@@ -1,9 +1,11 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { Home, ArrowLeft, Calendar } from "lucide-react";
+import { Home, ArrowLeft, Calendar, Download } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getEventBySlug, PortfolioEvent, urlFor } from "@/lib/sanity";
 import Lightbox from "@/components/Lightbox";
 import Masonry from 'react-masonry-css';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
 const categoryTitles: Record<string, string> = {
   spectacle: "Spectacles",
@@ -21,6 +23,8 @@ const EventDetail = () => {
   const [loading, setLoading] = useState(true);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [downloadingAll, setDownloadingAll] = useState(false);
+  const [downloadProgress, setDownloadProgress] = useState(0);
 
   useEffect(() => {
     if (slug) {
@@ -37,6 +41,69 @@ const EventDetail = () => {
       console.error("Erreur lors du chargement de l'album:", error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Télécharge une seule photo
+  const downloadSingleImage = async (imageUrl: string, imageName: string) => {
+    try {
+      const response = await fetch(imageUrl);
+      const blob = await response.blob();
+      saveAs(blob, `${imageName}.jpg`);
+    } catch (error) {
+      console.error("Erreur lors du téléchargement:", error);
+      alert("Erreur lors du téléchargement de l'image");
+    }
+  };
+
+  // Télécharge toutes les photos dans un ZIP
+  const downloadAllImages = async () => {
+    if (!event) return;
+    
+    setDownloadingAll(true);
+    setDownloadProgress(0);
+    
+    try {
+      const zip = new JSZip();
+      const folder = zip.folder(event.title);
+      const totalImages = event.images.length;
+
+      // Télécharge toutes les images avec compteur (80% de la progression)
+      for (let index = 0; index < totalImages; index++) {
+        const image = event.images[index];
+        const imageUrl = urlFor(image.asset).width(2000).quality(90).url();
+        const response = await fetch(imageUrl);
+        const blob = await response.blob();
+        const fileName = `${event.title}-${index + 1}.jpg`;
+        folder?.file(fileName, blob);
+        
+        // Met à jour la progression (0-80%)
+        setDownloadProgress(Math.round(((index + 1) / totalImages) * 80));
+      }
+
+      // Génération du ZIP (80-100%)
+      setDownloadProgress(85);
+      const content = await zip.generateAsync(
+        { type: 'blob' },
+        (metadata) => {
+          // Progression de la compression (85-95%)
+          const zipProgress = 85 + (metadata.percent * 0.1);
+          setDownloadProgress(Math.round(zipProgress));
+        }
+      );
+      
+      setDownloadProgress(100);
+      saveAs(content, `${event.title}.zip`);
+      
+      setTimeout(() => {
+        alert(`✅ ${event.images.length} photos téléchargées avec succès !`);
+      }, 300);
+    } catch (error) {
+      console.error("Erreur lors du téléchargement:", error);
+      alert("Erreur lors du téléchargement des photos");
+    } finally {
+      setDownloadingAll(false);
+      setDownloadProgress(0);
     }
   };
 
@@ -141,6 +208,31 @@ const EventDetail = () => {
                 <div className="mt-6 text-sm text-muted-foreground">
                   {event.images.length} photo{event.images.length > 1 ? 's' : ''}
                 </div>
+
+                {/* Bouton télécharger tout */}
+                <button
+                  onClick={downloadAllImages}
+                  disabled={downloadingAll}
+                  className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-smooth font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <Download className="w-5 h-5" />
+                  {downloadingAll ? `Téléchargement... ${downloadProgress}%` : 'Télécharger toutes les photos'}
+                </button>
+                
+                {/* Barre de progression */}
+                {downloadingAll && (
+                  <div className="mt-4 w-full max-w-md mx-auto">
+                    <div className="bg-gray-200 rounded-full h-2 overflow-hidden">
+                      <div 
+                        className="bg-accent h-full transition-all duration-300"
+                        style={{ width: `${downloadProgress}%` }}
+                      />
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-2 text-center">
+                      {downloadProgress}% - {Math.round((downloadProgress / 100) * event.images.length)} / {event.images.length} photos
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* Galerie de photos en Masonry (vrai pêle-mêle) */}
@@ -162,8 +254,7 @@ const EventDetail = () => {
                   return (
                     <div
                       key={image._key || index}
-                      className={`mb-4 group relative overflow-hidden rounded-lg elegant-shadow hover:shadow-2xl transition-all duration-500 cursor-pointer ${randomHeight}`}
-                      onClick={() => openLightbox(index)}
+                      className={`mb-4 group relative overflow-hidden rounded-lg elegant-shadow hover:shadow-2xl transition-all duration-500 ${randomHeight}`}
                       style={{
                         animation: `fadeInScale 0.6s ease-out ${index * 0.1}s both`
                       }}
@@ -171,11 +262,26 @@ const EventDetail = () => {
                       <img
                         src={urlFor(image.asset).width(600).quality(85).url()}
                         alt={image.alt || event.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 cursor-pointer"
+                        onClick={() => openLightbox(index)}
                       />
                       
-                      {/* Overlay avec légende */}
+                      {/* Overlay avec légende et boutons */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      
+                      {/* Bouton télécharger individuel */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const imageUrl = urlFor(image.asset).width(2000).quality(90).url();
+                          const imageName = `${event.title}-${index + 1}`;
+                          downloadSingleImage(imageUrl, imageName);
+                        }}
+                        className="absolute top-4 right-4 p-2 bg-accent text-accent-foreground rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:scale-110 z-10"
+                        title="Télécharger cette photo"
+                      >
+                        <Download className="w-5 h-5" />
+                      </button>
                       
                       {image.caption && (
                         <p className="absolute bottom-4 left-4 right-4 text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm">
