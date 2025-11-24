@@ -40,7 +40,7 @@ const Index = () => {
                   Spectacles, événements en studio, festivals
                 </p>
                 <Button className={cn(elegantButtonVariants({ variant: "elegant", size: "lg" }))}>
-                  Voir nos services
+                  Voir mes services
                 </Button>
               </div>
             </Link>
@@ -53,7 +53,7 @@ const Index = () => {
                   Mariages, baptêmes, événements privés
                 </p>
                 <Button className={cn(elegantButtonVariants({ variant: "elegant", size: "lg" }))}>
-                  Découvrir nos portfolios
+                  Découvrir les portfolios
                 </Button>
               </div>
             </Link>

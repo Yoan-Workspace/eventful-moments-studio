@@ -83,7 +83,7 @@ export const ContactForm = () => {
 
       toast({
         title: "Message envoyé !",
-        description: "Nous vous répondrons dans les plus brefs délais.",
+        description: "Je vous répondrai dans les plus brefs délais.",
       });
 
       form.reset();
@@ -104,11 +104,7 @@ export const ContactForm = () => {
         <div className="text-center mb-12">
           <Mail className="w-16 h-16 mx-auto mb-4 text-accent" />
           <h2 className="text-4xl font-serif mb-4 text-foreground">Demander un Devis</h2>
-          <p className="text-muted-foreground text-lg">
-            Décrivez votre projet et nous vous répondrons rapidement avec un devis personnalisé
-          </p>
-        </div>
-        <div className="mt-4 flex justify-center mb-8">
+          <div className="mt-4 flex justify-center mb-8">
   {!showPhone ? (
     <Button
       onClick={() => setShowPhone(true)}
@@ -128,6 +124,11 @@ export const ContactForm = () => {
     </p>
   )}
 </div>
+          <p className="text-muted-foreground text-lg">
+            Décrivez votre projet et je vous répondrai rapidement avec un devis personnalisé
+          </p>
+        </div>
+        
         <div className="bg-card p-8 rounded-lg elegant-shadow">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
