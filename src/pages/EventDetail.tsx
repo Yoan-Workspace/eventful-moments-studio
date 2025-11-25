@@ -151,8 +151,8 @@ const EventDetail = () => {
                   700: 2,
                   500: 1
                 }}
-                className="flex -ml-4 w-auto"
-                columnClassName="pl-4 bg-clip-padding"
+                className="flex -ml-1 w-auto"
+                columnClassName="pl-1"
               >
                 {event.images.map((image, index) => {
                   // Hauteurs variées pour l'effet pêle-mêle
@@ -162,7 +162,7 @@ const EventDetail = () => {
                   return (
                     <div
                       key={image._key || index}
-                      className={`mb-4 group relative overflow-hidden rounded-lg elegant-shadow hover:shadow-2xl transition-all duration-500 cursor-pointer ${randomHeight}`}
+                      className={`mb-1 group relative overflow-hidden elegant-shadow hover:shadow-2xl transition-all duration-500 cursor-pointer ${randomHeight}`}
                       onClick={() => openLightbox(index)}
                       style={{
                         animation: `fadeInScale 0.6s ease-out ${index * 0.1}s both`
