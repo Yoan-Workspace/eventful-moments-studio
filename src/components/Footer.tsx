@@ -94,9 +94,11 @@ export const Footer = () => {
               © 2025 Julie Montbeyre Photographie. Tous droits réservés.
             </p>
             <div className="flex gap-4 text-sm text-primary-foreground/60">
-              <a href="#" className="hover:text-accent transition-smooth">Mentions légales</a>
+
+              <Link to="/MentionsLegales" className="hover:text-accent transition-smooth">Mentions légales</Link>
               <span>•</span>
-              <a href="#" className="hover:text-accent transition-smooth">Politique de confidentialité</a>
+              <Link to="/PolitiqueConfidentialite" className="hover:text-accent transition-smooth">Politique de confidentialité</Link>
+           
             </div>
           </div>
         </div>

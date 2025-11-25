@@ -6,6 +6,8 @@ import Particuliers from "@/pages/Particuliers";
 import PortfolioEvents from "@/pages/PortfolioEvents"; // Liste des albums
 import EventDetail from "@/pages/EventDetail";         // Photos d'un album
 import Portfolio from "@/pages/Portfolio";             // Ancien système (optionnel)
+import MentionsLegales from "@/pages/MentionsLegales";
+import PrivacyPolicy from "@/pages/PolitiqueConfidentialite";
 
 function App() {
   return (
@@ -18,7 +20,8 @@ function App() {
         {/* Nouvelle structure avec albums */}
         <Route path="/portfolio/:category" element={<PortfolioEvents />} />
         <Route path="/portfolio/:category/:slug" element={<EventDetail />} />
-        
+        <Route path="/MentionsLegales" element={<MentionsLegales />} />
+        <Route path="/PolitiqueConfidentialite" element={<PrivacyPolicy />} />
         {/* Ancien système (garde-le si tu veux garder les 2 systèmes) */}
         {/* <Route path="/old-portfolio/:category" element={<Portfolio />} /> */}
       </Routes>
