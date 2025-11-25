@@ -31,14 +31,18 @@ export interface PortfolioEvent {
   slug: {
     current: string;
   };
-  category: 'spectacle' | 'studio' | 'festival' | 'mariage' | 'bapteme'| 'evenement';
+  category: 'spectacle' | 'studio' | 'festival' | 'mariage' | 'bapteme' | 'evenement';
   eventDate?: string;
   coverImage: any;
   images: Array<{
     _key: string;
-    asset: any;
-    alt?: string;
-    caption?: string;
+    sequenceTitle: string;
+    photos: Array<{
+      _key: string;
+      asset: any;
+      alt?: string;
+      caption?: string;
+    }>;
   }>;
   description?: string;
   visibility: 'public' | 'private';
@@ -67,7 +71,8 @@ export const getEventsByCategory = async (category: string) => {
     visibility,
     featured,
     order,
-    "imageCount": count(images)
+    // Count total number of photos across nested sequences (images[].photos[])
+    "imageCount": count(images[].photos[])
   }`;
   return await sanityClient.fetch<PortfolioEvent[]>(query, { category });
 };
@@ -83,14 +88,20 @@ export const getEventBySlug = async (slug: string) => {
     coverImage,
     images[] {
       _key,
-      asset,
-      alt,
-      caption
+      sequenceTitle,
+      photos[] {
+        _key,
+        asset,
+        alt,
+        caption
+      }
     },
     description,
     visibility,
     featured,
-    order
+    order,
+    // Count total number of photos across nested sequences (images[].photos[])
+    "imageCount": count(images[].photos[])
   }`;
   return await sanityClient.fetch<PortfolioEvent>(query, { slug });
 };
@@ -105,7 +116,8 @@ export const getFeaturedEvents = async () => {
     coverImage,
     description,
     visibility,
-    "imageCount": count(images)
+    // Count total number of photos across nested sequences (images[].photos[])
+    "imageCount": count(images[].photos[])
   }`;
   return await sanityClient.fetch<PortfolioEvent[]>(query);
 };

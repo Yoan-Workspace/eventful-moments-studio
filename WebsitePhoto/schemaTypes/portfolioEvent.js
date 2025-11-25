@@ -14,6 +14,18 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: 'slug',
+      title: 'URL de l\'album',
+      type: 'slug',
+      description: '⬇️ Cliquez sur "Generate" pour créer l\'URL (une seule fois)',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+      validation: Rule => Rule.required(),
+      readOnly: ({document}) => !!document?.slug?.current, // Verrouillé après génération
+    },
+    {
       name: 'category',
       title: 'Catégorie',
       type: 'string',
@@ -31,14 +43,6 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      name: 'eventDate',
-      title: 'Date de l\'événement',
-      type: 'date',
-      options: {
-        dateFormat: 'DD/MM/YYYY',
-      }
-    },
-    {
       name: 'visibility',
       title: 'Visibilité',
       type: 'string',
@@ -54,6 +58,14 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: 'eventDate',
+      title: 'Date de l\'événement',
+      type: 'date',
+      options: {
+        dateFormat: 'DD/MM/YYYY',
+      }
+    },
+    {
       name: 'coverImage',
       title: 'Image de couverture',
       type: 'image',
@@ -67,26 +79,62 @@ export default {
       name: 'images',
       title: 'Photos de l\'événement',
       type: 'array',
-      of: [{
-        type: 'image',
-        options: {
-          hotspot: true
-        },
-        fields: [
-          {
-            name: 'alt',
-            type: 'string',
-            title: 'Texte alternatif',
-            description: 'Description de la photo'
-          },
-          {
-            name: 'caption',
-            type: 'string',
-            title: 'Légende',
-            description: 'Légende affichée sous la photo'
+      of: [
+        {
+          type: 'object',
+          name: 'imageSequence',
+          title: 'Séquence de photos',
+          fields: [
+            {
+              name: 'sequenceTitle',
+              title: 'Titre de la séquence',
+              type: 'string',
+              description: 'Ex: "Mairie", "Église", "Cocktail", "Soirée"...',
+              validation: Rule => Rule.required()
+            },
+            {
+              name: 'photos',
+              title: 'Photos',
+              type: 'array',
+              of: [{
+                type: 'image',
+                options: {
+                  hotspot: true
+                },
+                fields: [
+                  {
+                    name: 'alt',
+                    type: 'string',
+                    title: 'Texte alternatif',
+                    description: 'Description de la photo'
+                  },
+                  {
+                    name: 'caption',
+                    type: 'string',
+                    title: 'Légende',
+                    description: 'Légende affichée sous la photo'
+                  }
+                ]
+              }],
+              validation: Rule => Rule.required().min(1)
+            }
+          ],
+          preview: {
+            select: {
+              title: 'sequenceTitle',
+              media: 'photos.0'
+            },
+            prepare(selection) {
+              const {title, media} = selection
+              return {
+                title: title,
+                subtitle: 'Séquence de photos',
+                media: media
+              }
+            }
           }
-        ]
-      }],
+        }
+      ],
       validation: Rule => Rule.required().min(1)
     },
     {
@@ -109,19 +157,6 @@ export default {
       type: 'number',
       description: 'Plus le nombre est petit, plus l\'album apparaît en premier',
       initialValue: 0
-    },
-    {
-      name: 'slug',
-      title: 'URL générée automatiquement',
-      type: 'slug',
-      description: 'Cette URL est générée automatiquement depuis le titre',
-      options: {
-        source: 'title',
-        maxLength: 96,
-        auto: true, // Génération automatique
-      },
-      validation: Rule => Rule.required(),
-      readOnly: false //({document}) => !!document?.slug?.current, // Verrouillé après génération
     },
     {
       name: 'shareLink',

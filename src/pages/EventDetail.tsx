@@ -71,12 +71,17 @@ const EventDetail = () => {
   };
 
   // Prépare les images pour le lightbox
-  const lightboxImages = event?.images.map((img, index) => ({
-    _id: img._key || `image-${index}`,
-    title: img.caption || event.title,
-    image: img.asset,
-    description: img.alt,
-  })) || [];
+ const lightboxImages = event?.images.flatMap(sequence => 
+  sequence.photos.map((photo, photoIndex) => ({
+    _id: photo._key || `photo-${photoIndex}`,
+    title: photo.caption || sequence.sequenceTitle,
+    image: photo.asset,
+    description: photo.alt,
+  }))
+) || [];
+
+const totalPhotos = event?.imageCount ?? event?.images
+  ?.reduce((acc, seq) => acc + (seq.photos?.length ?? 0), 0) ?? 0;
 
   return (
     <div className="min-h-screen bg-background">
@@ -139,12 +144,12 @@ const EventDetail = () => {
                 )}
 
                 <div className="mt-6 text-sm text-muted-foreground">
-                  {event.images.length} photo{event.images.length > 1 ? 's' : ''}
+                  {totalPhotos} photo{totalPhotos !== 1 ? 's' : ''}
                 </div>
               </div>
 
               {/* Galerie de photos en Masonry (vrai pêle-mêle) */}
-              <Masonry
+             {/* <Masonry
                 breakpointCols={{
                   default: 4,
                   1100: 3,
@@ -153,39 +158,63 @@ const EventDetail = () => {
                 }}
                 className="flex -ml-1 w-auto"
                 columnClassName="pl-1"
-              >
-                {event.images.map((image, index) => {
-                  // Hauteurs variées pour l'effet pêle-mêle
-                  const heights = ['h-64', 'h-96', 'h-80', 'h-72', 'h-[22rem]', 'h-[26rem]', 'h-88'];
-                  const randomHeight = heights[index % heights.length];
-                  
-                  return (
-                    <div
-                      key={image._key || index}
-                      className={`mb-1 group relative overflow-hidden elegant-shadow hover:shadow-2xl transition-all duration-500 cursor-pointer ${randomHeight}`}
-                      onClick={() => openLightbox(index)}
-                      style={{
-                        animation: `fadeInScale 0.6s ease-out ${index * 0.1}s both`
-                      }}
-                    >
-                      <img
-                        src={urlFor(image.asset).width(600).quality(85).url()}
-                        alt={image.alt || event.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                      />
-                      
-                      {/* Overlay avec légende */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      
-                      {image.caption && (
-                        <p className="absolute bottom-4 left-4 right-4 text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm">
-                          {image.caption}
-                        </p>
-                      )}
-                    </div>
-                  );
-                })}
-              </Masonry>
+              >*/}
+                {event.images.map((sequence, seqIndex) => (
+  <div key={sequence._key || seqIndex} className="mb-16">
+    {/* Titre de la séquence */}
+    <h2 className="text-3xl font-serif text-center mb-8 text-foreground">
+      {sequence.sequenceTitle}
+    </h2>
+    
+    {/* Galerie Masonry pour cette séquence */}
+    <Masonry
+      breakpointCols={{
+        default: 4,
+        1100: 3,
+        700: 2,
+        500: 1
+      }}
+      className="flex -ml-1 w-auto"
+      columnClassName="pl-1"
+    >
+      {sequence.photos.map((photo, photoIndex) => {
+        const heights = ['h-64', 'h-96', 'h-80', 'h-72', 'h-[22rem]', 'h-[26rem]', 'h-88'];
+        const randomHeight = heights[photoIndex % heights.length];
+        
+        // Calcule l'index global pour le lightbox
+        const globalIndex = event.images
+          .slice(0, seqIndex)
+          .reduce((acc, seq) => acc + seq.photos.length, 0) + photoIndex;
+        
+        return (
+          <div
+            key={photo._key || photoIndex}
+            className={`mb-1 group relative overflow-hidden elegant-shadow hover:shadow-2xl transition-all duration-500 cursor-pointer ${randomHeight}`}
+            onClick={() => openLightbox(globalIndex)}
+            style={{
+              animation: `fadeInScale 0.6s ease-out ${photoIndex * 0.1}s both`
+            }}
+          >
+            <img
+              src={urlFor(photo.asset).width(600).quality(85).url()}
+              alt={photo.alt || sequence.sequenceTitle}
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            />
+            
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            
+            {photo.caption && (
+              <p className="absolute bottom-4 left-4 right-4 text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm">
+                {photo.caption}
+              </p>
+            )}
+          </div>
+        );
+      })}
+    </Masonry>
+  </div>
+))}
+              
 
               {/* Animation CSS */}
               <style>{`

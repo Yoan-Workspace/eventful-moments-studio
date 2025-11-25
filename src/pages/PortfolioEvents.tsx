@@ -56,6 +56,7 @@ const PortfolioEvents = () => {
       year: 'numeric'
     });
   };
+  
 
   return (
     <div className="min-h-screen bg-background">
@@ -114,9 +115,13 @@ const PortfolioEvents = () => {
                         {/* Badge nombre de photos */}
                         <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm px-3 py-1 rounded-full flex items-center gap-2 text-white text-sm">
                           <Image className="w-4 h-4" />
-                          <span>{event.imageCount} photos</span>
+                          {(() => {
+                            const total = event.imageCount ?? event.images?.reduce((acc, seq) => acc + (seq.photos?.length ?? 0), 0) ?? 0;
+                            return <span>{total} {total !== 1 ? 'photos' : 'photo'}</span>
+                          })()}
                         </div>
                       </div>
+                      
 
                       {/* Informations */}
                       <div className="p-6">
