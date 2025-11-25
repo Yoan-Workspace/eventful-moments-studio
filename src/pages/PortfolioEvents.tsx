@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { Home, ArrowLeft, Calendar, Image } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getEventsByCategory, PortfolioEvent, urlFor } from "@/lib/sanity";
+import { Footer } from "@/components/Footer";
 
 const categoryTitles: Record<string, string> = {
   spectacle: "Spectacles",
@@ -171,6 +172,8 @@ const PortfolioEvents = () => {
           )}
         </div>
       </section>
+      {/* Footer */}
+            <Footer />
     </div>
   );
 };

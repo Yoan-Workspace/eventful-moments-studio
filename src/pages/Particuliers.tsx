@@ -6,7 +6,7 @@ import { Header } from "@/components/Header";
 import mariageImg from "@/assets/category-mariage.jpg";
 import baptemeImg from "@/assets/category-bapteme.jpg";
 import cocktailImg from "@/assets/category-cocktail.jpg";
-
+import { Footer } from "@/components/Footer";
 
 const categories = [
   {
@@ -79,6 +79,8 @@ const Particuliers = () => {
           </div>
         </div>
       </section>
+      {/* Footer */}
+            <Footer />
     </div>
   );
 };

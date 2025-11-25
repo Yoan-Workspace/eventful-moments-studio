@@ -6,7 +6,7 @@ import { Header } from "@/components/Header";
 import spectacleImg from "@/assets/category-spectacle.jpg";
 import studioImg from "@/assets/category-studio.jpg";
 import festivalImg from "@/assets/category-festival.jpg";
-
+import { Footer } from "@/components/Footer";
 const categories = [
   {
     id: "spectacle",
@@ -78,6 +78,8 @@ const Entreprises = () => {
           </div>
         </div>
       </section>
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

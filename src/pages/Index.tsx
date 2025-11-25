@@ -7,6 +7,7 @@ import { elegantButtonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
 import heroImage from "@/assets/hero-bg.jpg";
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -68,11 +69,12 @@ const Index = () => {
       <ContactForm />
 
       {/* Footer */}
-      <footer className="bg-primary text-primary-foreground py-8">
+      <Footer />
+      {/*<footer className="bg-primary text-primary-foreground py-8">
         <div className="container mx-auto px-4 text-center">
           <p className="text-sm">© 2025 Julie Montbeyre Photographie. Tous droits réservés.</p>
         </div>
-      </footer>
+      </footer>*/}
     </div>
   );
 };

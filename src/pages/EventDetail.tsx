@@ -25,6 +25,8 @@ const EventDetail = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [downloadingAll, setDownloadingAll] = useState(false);
   const [downloadProgress, setDownloadProgress] = useState(0);
+  const [selectionMode, setSelectionMode] = useState(false);
+  const [selectedImages, setSelectedImages] = useState<number[]>([]);
 
   useEffect(() => {
     if (slug) {
@@ -53,6 +55,84 @@ const EventDetail = () => {
     } catch (error) {
       console.error("Erreur lors du téléchargement:", error);
       alert("Erreur lors du téléchargement de l'image");
+    }
+  };
+
+  // Active/désactive le mode sélection
+  const toggleSelectionMode = () => {
+    setSelectionMode(!selectionMode);
+    setSelectedImages([]);
+  };
+
+  // Toggle une image dans la sélection
+  const toggleImageSelection = (index: number) => {
+    setSelectedImages(prev => 
+      prev.includes(index) 
+        ? prev.filter(i => i !== index)
+        : [...prev, index]
+    );
+  };
+
+  // Sélectionne toutes les images
+  const selectAllImages = () => {
+    if (!event) return;
+    setSelectedImages(event.images.map((_, index) => index));
+  };
+
+  // Désélectionne toutes les images
+  const deselectAllImages = () => {
+    setSelectedImages([]);
+  };
+
+  // Télécharge les images sélectionnées
+  const downloadSelectedImages = async () => {
+    if (!event || selectedImages.length === 0) return;
+    
+    setDownloadingAll(true);
+    setDownloadProgress(0);
+    
+    try {
+      const zip = new JSZip();
+      const folder = zip.folder(`${event.title}-selection`);
+      const totalImages = selectedImages.length;
+
+      // Télécharge les images sélectionnées
+      for (let i = 0; i < totalImages; i++) {
+        const index = selectedImages[i];
+        const image = event.images[index];
+        const imageUrl = urlFor(image.asset).width(2000).quality(90).url();
+        const response = await fetch(imageUrl);
+        const blob = await response.blob();
+        const fileName = `${event.title}-${index + 1}.jpg`;
+        folder?.file(fileName, blob);
+        
+        setDownloadProgress(Math.round(((i + 1) / totalImages) * 80));
+      }
+
+      // Génération du ZIP
+      setDownloadProgress(85);
+      const content = await zip.generateAsync(
+        { type: 'blob' },
+        (metadata) => {
+          const zipProgress = 85 + (metadata.percent * 0.1);
+          setDownloadProgress(Math.round(zipProgress));
+        }
+      );
+      
+      setDownloadProgress(100);
+      saveAs(content, `${event.title}-selection.zip`);
+      
+      setTimeout(() => {
+        alert(`✅ ${selectedImages.length} photo${selectedImages.length > 1 ? 's' : ''} téléchargée${selectedImages.length > 1 ? 's' : ''} avec succès !`);
+        setSelectionMode(false);
+        setSelectedImages([]);
+      }, 300);
+    } catch (error) {
+      console.error("Erreur lors du téléchargement:", error);
+      alert("Erreur lors du téléchargement des photos");
+    } finally {
+      setDownloadingAll(false);
+      setDownloadProgress(0);
     }
   };
 
@@ -209,15 +289,62 @@ const EventDetail = () => {
                   {event.images.length} photo{event.images.length > 1 ? 's' : ''}
                 </div>
 
-                {/* Bouton télécharger tout */}
-                <button
-                  onClick={downloadAllImages}
-                  disabled={downloadingAll}
-                  className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-smooth font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <Download className="w-5 h-5" />
-                  {downloadingAll ? `Téléchargement... ${downloadProgress}%` : 'Télécharger toutes les photos'}
-                </button>
+                {/* Boutons d'action */}
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+                  {/* Bouton mode sélection */}
+                  <button
+                    onClick={toggleSelectionMode}
+                    className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg transition-smooth font-medium ${
+                      selectionMode 
+                        ? 'bg-red-500 text-white hover:bg-red-600' 
+                        : 'bg-secondary text-foreground hover:bg-secondary/80'
+                    }`}
+                  >
+                    {selectionMode ? '✕ Annuler la sélection' : '☑ Sélectionner des photos'}
+                  </button>
+
+                  {/* Boutons de sélection (visible en mode sélection) */}
+                  {selectionMode && (
+                    <>
+                      <button
+                        onClick={selectAllImages}
+                        className="inline-flex items-center gap-2 px-4 py-3 bg-secondary text-foreground rounded-lg hover:bg-secondary/80 transition-smooth font-medium text-sm"
+                      >
+                        Tout sélectionner
+                      </button>
+                      <button
+                        onClick={deselectAllImages}
+                        className="inline-flex items-center gap-2 px-4 py-3 bg-secondary text-foreground rounded-lg hover:bg-secondary/80 transition-smooth font-medium text-sm"
+                      >
+                        Tout désélectionner
+                      </button>
+                    </>
+                  )}
+
+                  {/* Bouton télécharger la sélection */}
+                  {selectionMode && selectedImages.length > 0 && (
+                    <button
+                      onClick={downloadSelectedImages}
+                      disabled={downloadingAll}
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-smooth font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <Download className="w-5 h-5" />
+                      {downloadingAll ? `Téléchargement... ${downloadProgress}%` : `Télécharger la sélection (${selectedImages.length})`}
+                    </button>
+                  )}
+
+                  {/* Bouton télécharger tout (visible hors mode sélection) */}
+                  {!selectionMode && (
+                    <button
+                      onClick={downloadAllImages}
+                      disabled={downloadingAll}
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-smooth font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <Download className="w-5 h-5" />
+                      {downloadingAll ? `Téléchargement... ${downloadProgress}%` : 'Télécharger toutes les photos'}
+                    </button>
+                  )}
+                </div>
                 
                 {/* Barre de progression */}
                 {downloadingAll && (
@@ -254,7 +381,9 @@ const EventDetail = () => {
                   return (
                     <div
                       key={image._key || index}
-                      className={`mb-4 group relative overflow-hidden rounded-lg elegant-shadow hover:shadow-2xl transition-all duration-500 ${randomHeight}`}
+                      className={`mb-4 group relative overflow-hidden rounded-lg elegant-shadow hover:shadow-2xl transition-all duration-500 ${randomHeight} ${
+                        selectedImages.includes(index) ? 'ring-4 ring-accent' : ''
+                      }`}
                       style={{
                         animation: `fadeInScale 0.6s ease-out ${index * 0.1}s both`
                       }}
@@ -263,25 +392,50 @@ const EventDetail = () => {
                         src={urlFor(image.asset).width(600).quality(85).url()}
                         alt={image.alt || event.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 cursor-pointer"
-                        onClick={() => openLightbox(index)}
+                        onClick={() => selectionMode ? toggleImageSelection(index) : openLightbox(index)}
                       />
                       
                       {/* Overlay avec légende et boutons */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       
-                      {/* Bouton télécharger individuel */}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          const imageUrl = urlFor(image.asset).width(2000).quality(90).url();
-                          const imageName = `${event.title}-${index + 1}`;
-                          downloadSingleImage(imageUrl, imageName);
-                        }}
-                        className="absolute top-4 right-4 p-2 bg-accent text-accent-foreground rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:scale-110 z-10"
-                        title="Télécharger cette photo"
-                      >
-                        <Download className="w-5 h-5" />
-                      </button>
+                      {/* Checkbox en mode sélection */}
+                      {selectionMode && (
+                        <div 
+                          className="absolute top-4 left-4 z-10"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleImageSelection(index);
+                          }}
+                        >
+                          <div className={`w-8 h-8 rounded-lg border-2 flex items-center justify-center cursor-pointer transition-all ${
+                            selectedImages.includes(index) 
+                              ? 'bg-accent border-accent' 
+                              : 'bg-white/80 border-white backdrop-blur-sm'
+                          }`}>
+                            {selectedImages.includes(index) && (
+                              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                              </svg>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                      
+                      {/* Bouton télécharger individuel (hors mode sélection) */}
+                      {!selectionMode && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const imageUrl = urlFor(image.asset).width(2000).quality(90).url();
+                            const imageName = `${event.title}-${index + 1}`;
+                            downloadSingleImage(imageUrl, imageName);
+                          }}
+                          className="absolute top-4 right-4 p-2 bg-accent text-accent-foreground rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:scale-110 z-10"
+                          title="Télécharger cette photo"
+                        >
+                          <Download className="w-5 h-5" />
+                        </button>
+                      )}
                       
                       {image.caption && (
                         <p className="absolute bottom-4 left-4 right-4 text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm">
