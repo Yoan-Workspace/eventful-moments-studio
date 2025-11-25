@@ -22,8 +22,8 @@ const categories = [
     image: baptemeImg,
   },
   {
-    id: "cocktail",
-    title: "Cocktails",
+    id: "evenement",
+    title: "Événements",
     description: "Des instants conviviaux pleins de vie et d'élégance",
     image: cocktailImg,
   },

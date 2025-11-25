@@ -24,7 +24,7 @@ export default {
           {title: 'Festival', value: 'festival'},
           {title: 'Mariage', value: 'mariage'},
           {title: 'Baptême', value: 'bapteme'},
-          {title: 'Cocktail', value: 'cocktail'}
+          {title: 'Événement', value: 'evenement'}
         ],
         layout: 'radio'
       },
