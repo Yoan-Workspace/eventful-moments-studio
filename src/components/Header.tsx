@@ -53,16 +53,16 @@ export const Header = () => {
           {/* Navigation for desktop */}
           <nav className="hidden md:flex items-center gap-6">
             <Link
-              to="/entreprises"
+              to="/Danse"
               className="text-foreground hover:text-accent transition-smooth font-medium"
             >
-              Entreprises / Association
+              Danse
             </Link>
             <Link
               to="/particuliers"
               className="text-foreground hover:text-accent transition-smooth font-medium"
             >
-              Particuliers
+              Moments de vie
             </Link>
             <button
               onClick={handleContactClick}
@@ -124,11 +124,11 @@ export const Header = () => {
 
               <nav className="flex flex-col gap-4">
                 <Link
-                  to="/entreprises"
+                  to="/Danse"
                   onClick={() => setMobileOpen(false)}
                   className="text-foreground text-lg font-semibold py-2"
                 >
-                  Entreprises / Association
+                  Danse
                 </Link>
 
                 <Link

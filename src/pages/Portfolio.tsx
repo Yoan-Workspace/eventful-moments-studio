@@ -64,8 +64,8 @@ const Portfolio = () => {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
-  const isEntrepriseCategory = ["spectacle", "studio", "festival"].includes(category || "");
-  const backLink = isEntrepriseCategory ? "/entreprises" : "/particuliers";
+  const isDanseCategory = ["spectacle", "studio", "festival"].includes(category || "");
+  const backLink = isDanseCategory ? "/Danse" : "/particuliers";
 
   return (
     <div className="min-h-screen bg-background">

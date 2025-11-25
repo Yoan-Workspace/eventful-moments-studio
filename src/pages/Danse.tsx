@@ -28,7 +28,7 @@ const categories = [
   },
 ];
 
-const Entreprises = () => {
+const Danse = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -84,4 +84,4 @@ const Entreprises = () => {
   );
 };
 
-export default Entreprises;
+export default Danse;

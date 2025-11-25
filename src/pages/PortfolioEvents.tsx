@@ -45,8 +45,8 @@ const PortfolioEvents = () => {
     }
   };
 
-  const isEntrepriseCategory = ["spectacle", "studio", "festival"].includes(category || "");
-  const backLink = isEntrepriseCategory ? "/entreprises" : "/particuliers";
+  const isDanseCategory = ["spectacle", "studio", "festival"].includes(category || "");
+  const backLink = isDanseCategory ? "/Danse" : "/particuliers";
 
   const formatDate = (dateString?: string) => {
     if (!dateString) return null;

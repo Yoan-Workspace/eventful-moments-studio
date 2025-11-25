@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import { Building2, Users } from "lucide-react";
+import { Users } from "lucide-react";
+import FlamencoDancer from "@/assets/flamenco-dancer.svg";
+import WeedingRing from "@/assets/weeding-ring.svg";
 import { Button } from "@/components/ui/button";
 import { GoogleReviews } from "@/components/GoogleReviews";
 import { ContactForm } from "@/components/ContactForm";
@@ -33,12 +35,12 @@ const Index = () => {
 
           {/* Navigation Buttons */}
           <div className="flex flex-col md:flex-row gap-8 justify-center items-center max-w-4xl mx-auto">
-            <Link to="/entreprises" className="w-full md:w-auto">
+            <Link to="/Danse" className="w-full md:w-auto">
               <div className="group bg-card/95 backdrop-blur-sm p-8 rounded-lg elegant-shadow hover:shadow-2xl transition-smooth hover:scale-105">
-                <Building2 className="w-16 h-16 mx-auto mb-4 text-accent" />
-                <h3 className="text-2xl font-serif mb-3 text-foreground">Entreprises & Associations</h3>
+                <img src={FlamencoDancer} className="w-16 h-16 mx-auto mb-4 text-accent" alt="Danse" />
+                <h3 className="text-2xl font-serif mb-3 text-foreground">Danse</h3>
                 <p className="text-muted-foreground mb-6">
-                  Spectacles, événements en studio, festivals
+                  Spectacles, studio, ...
                 </p>
                 <Button className={cn(elegantButtonVariants({ variant: "elegant", size: "lg" }))}>
                   Voir mes services
@@ -48,13 +50,13 @@ const Index = () => {
 
             <Link to="/particuliers" className="w-full md:w-auto">
               <div className="group bg-card/95 backdrop-blur-sm p-8 rounded-lg elegant-shadow hover:shadow-2xl transition-smooth hover:scale-105">
-                <Users className="w-16 h-16 mx-auto mb-4 text-accent" />
-                <h3 className="text-2xl font-serif mb-3 text-foreground">Particuliers</h3>
+                <img src={WeedingRing} className="w-16 h-16 mx-auto mb-4 text-accent" alt="Moments de vie" />
+                <h3 className="text-2xl font-serif mb-3 text-foreground">Moments de vie</h3>
                 <p className="text-muted-foreground mb-6">
-                  Mariages, baptêmes, événements privés
+                  Mariages, baptêmes, ...
                 </p>
                 <Button className={cn(elegantButtonVariants({ variant: "elegant", size: "lg" }))}>
-                  Découvrir les portfolios
+                  Voir mes services
                 </Button>
               </div>
             </Link>

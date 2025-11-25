@@ -1,7 +1,7 @@
 // Dans ton fichier de routes (App.tsx ou similaire)
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Index from "@/pages/Index";
-import Entreprises from "@/pages/Entreprises";
+import Danse from "@/pages/Danse";
 import Particuliers from "@/pages/Particuliers";
 import PortfolioEvents from "@/pages/PortfolioEvents"; // Liste des albums
 import EventDetail from "@/pages/EventDetail";         // Photos d'un album
@@ -14,7 +14,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Index />} />
-        <Route path="/entreprises" element={<Entreprises />} />
+        <Route path="/Danse" element={<Danse />} />
         <Route path="/particuliers" element={<Particuliers />} />
         
         {/* Nouvelle structure avec albums */}

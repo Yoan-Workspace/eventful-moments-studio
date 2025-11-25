@@ -24,7 +24,7 @@ const MentionsLegales = () => {
               <p className="mb-2">
                 <strong>Raison sociale :</strong> Julie Montbeyre / Julie Montbeyre Photographie<br />
                 <strong>Statut juridique :</strong> Auto-entrepreneur<br />
-                <strong>SIRET :</strong> [Numéro SIRET]<br />
+                <strong>SIRET :</strong> 95176590800011<br />
                 <strong>Adresse :</strong> 2 rue du docteur Maurice Tenine, 91320 Wissoux <br />
                 <strong>Email :</strong> julie.montbeyre@gmail.com<br />
                 <strong>Téléphone :</strong> 06 77 25 84 31

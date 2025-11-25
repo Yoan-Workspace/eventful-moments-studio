@@ -22,13 +22,13 @@ export const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Navigation</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/entreprises" className="text-primary-foreground/80 hover:text-accent transition-smooth text-sm">
-                  Entreprises & Associations
+                <Link to="/Danse" className="text-primary-foreground/80 hover:text-accent transition-smooth text-sm">
+                  Danse
                 </Link>
               </li>
               <li>
                 <Link to="/particuliers" className="text-primary-foreground/80 hover:text-accent transition-smooth text-sm">
-                  Particuliers
+                  Moments de vie
                 </Link>
               </li>
               {/*<li>
