@@ -26,11 +26,10 @@ const Index = () => {
       >
         <div className="container mx-auto px-4 text-center z-10">
           <h1 className="text-5xl md:text-7xl font-serif text-white mb-6 animate-fade-in">
-            Capturer l'Essence de Vos Moments
+            Deux univers, une seul sensibilité
           </h1>
           <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-16 leading-relaxed">
-            Photographe événementiel passionnée, je transforme vos événements en souvenirs intemporels. 
-            Spécialisée dans les spectacles, mariages, festivals et événements d'entreprise.
+            Photographe professionnelle passionnée de danse, je photographie à la fois l'intensité du mouvement sur scène et la douceur des moments de vie.
           </p>
 
           {/* Navigation Buttons */}

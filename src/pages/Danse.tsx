@@ -38,10 +38,10 @@ const Danse = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl font-serif mb-6 text-foreground">
-              Services Professionnels
+              Danse
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Choisissez le type de prestation qui correspond à votre événement
+            <p className="text-xl text-muted-foreground max-w-8xl mx-auto">
+             Passionée de danse, je capture la puissance des mouvements autant que la delicatesse des émotions, sur scène comme en studio. J'aime figer un saut, un tour, une expression, souligner la technique des danseurs, l'ambiance des lumières et l'énergie de la chorégraphie. Quand le rideau se ferme, que la musique s'éteint et que les maquillages s'effacent, il reste les images pour prolonger la danse et garder une trace de son souffle.
             </p>
           </div>
 

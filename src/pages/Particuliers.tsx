@@ -39,10 +39,10 @@ const Particuliers = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl font-serif mb-6 text-foreground">
-              Événements Privés
+              Moment de vie
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Des moments intimes capturés avec sensibilité et élégance
+            <p className="text-xl text-muted-foreground max-w-8xl mx-auto">
+              Habituée à capturer l'intensité de l'instant sur scène, je mets cette même sensibilité au service de votre histoire: un regard échangé, une larme discète, un éclat de rire, une main serrée un peu plus fort. A travers des images authentiques et lumineuses, revivez à l'infini l'ambiance de votre événement, les personnes que vous aimez. Les petits détails qui ont compté pour vous, et les émotions qui vous ont traversé.
             </p>
           </div>
 
