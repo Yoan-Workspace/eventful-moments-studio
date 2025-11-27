@@ -67,7 +67,6 @@ export const ContactForm = () => {
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'your_service_id';
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'your_template_id';
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'your_public_key';
-      console.log("Envoi email...");
       await emailjs.send(
           serviceId,
           templateId,
@@ -80,7 +79,6 @@ export const ContactForm = () => {
         },
         publicKey
       );
-        console.log("Email envoyé avec succès");
       toast({
         title: "Message envoyé !",
         description: "Je vous répondrai dans les plus brefs délais.",

@@ -103,7 +103,24 @@ export default {
                     title: 'Légende',
                     description: 'Légende affichée sous la photo'
                   }
-                ]
+                ],
+                preview: {
+                  select: {
+                    title: 'caption',
+                    media: 'asset',
+                    width: 'asset->metadata.dimensions.width',
+                    height: 'asset->metadata.dimensions.height'
+                  },
+                  prepare(selection) {
+                    const {title, media, width, height} = selection;
+                    const size = width && height ? `${width}×${height}px` : 'Taille inconnue';
+                    return {
+                      title: title || 'Photo',
+                      subtitle: size,
+                      media: media
+                    };
+                  }
+                }
               }],
               validation: Rule => Rule.required().min(1)
             ,
