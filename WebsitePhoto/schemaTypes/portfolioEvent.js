@@ -1,5 +1,6 @@
 // schemas/portfolioEvent.js
 import ShareLinkDisplay from '../components/ShareLinkDisplay'
+import FixedArrayInput from '../components/FixedArrayInput'
 
 export default {
   name: 'portfolioEvent',
@@ -12,18 +13,6 @@ export default {
       type: 'string',
       description: 'Ex: "Mariage de Sophie & Marc" ou "Festival Jazz 2024"',
       validation: Rule => Rule.required()
-    },
-    {
-      name: 'slug',
-      title: 'URL de l\'album',
-      type: 'slug',
-      description: '⬇️ Cliquez sur "Generate" pour créer l\'URL (une seule fois)',
-      options: {
-        source: 'title',
-        maxLength: 96,
-      },
-      validation: Rule => Rule.required(),
-      readOnly: ({document}) => !!document?.slug?.current, // Verrouillé après génération
     },
     {
       name: 'category',
@@ -117,25 +106,45 @@ export default {
                 ]
               }],
               validation: Rule => Rule.required().min(1)
+            ,
+            components: {
+              input: FixedArrayInput
+            },
+            options: {
+              maxHeight: 260
+            }
             }
           ],
           preview: {
             select: {
               title: 'sequenceTitle',
-              media: 'photos.0'
+              media: 'photos.0',
+              width: 'photos.0.asset->metadata.dimensions.width',
+              height: 'photos.0.asset->metadata.dimensions.height',
+              photoCount: 'count(photos)'
             },
             prepare(selection) {
-              const {title, media} = selection
+              const {title, media, width, height, photoCount} = selection
+              const size = width && height ? `${width}×${height}` : ''
+              const countText = photoCount ? `${photoCount} photo${photoCount > 1 ? 's' : ''}` : ''
+              const subtitleParts = ['Séquence de photos', countText, size].filter(Boolean)
               return {
                 title: title,
-                subtitle: 'Séquence de photos',
+                subtitle: subtitleParts.join(' — '),
                 media: media
               }
             }
           }
         }
       ],
-      validation: Rule => Rule.required().min(1)
+      validation: Rule => Rule.required().min(1),
+      components: {
+        input: FixedArrayInput
+      },
+      options: {
+        // Allow custom height per-field; fallback implemented in the component
+        maxHeight: 380
+      }
     },
     {
       name: 'description',
@@ -157,6 +166,18 @@ export default {
       type: 'number',
       description: 'Plus le nombre est petit, plus l\'album apparaît en premier',
       initialValue: 0
+    },
+    {
+      name: 'slug',
+      title: 'URL de l\'album',
+      type: 'slug',
+      description: '⬇️ Cliquez sur "Generate" pour créer l\'URL (une seule fois)',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+      validation: Rule => Rule.required(),
+      readOnly: ({document}) => !!document?.slug?.current, // Verrouillé après génération
     },
     {
       name: 'shareLink',

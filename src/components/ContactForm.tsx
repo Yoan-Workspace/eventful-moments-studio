@@ -84,8 +84,9 @@ export const ContactForm = () => {
       toast({
         title: "Message envoyé !",
         description: "Je vous répondrai dans les plus brefs délais.",
+        variant: "success",
       });
-      
+
       form.reset();
     } catch (error) {
       toast({

@@ -10,7 +10,7 @@ export default function ShareLinkDisplay(props) {
   const slug = useFormValue(['slug', 'current'])
   const visibility = useFormValue(['visibility'])
   
-  const baseUrl = 'http://localhost:8080' // http://juliemontbeyre-photographie.com // Remplace par ton vrai domaine en production
+  const baseUrl = 'http://juliemontbeyre-photographie.com' //'http://localhost:8080' // Remplace par ton vrai domaine en production
 
   // Si pas de catégorie ou pas de slug
   if (!category) {
