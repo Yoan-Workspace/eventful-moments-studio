@@ -67,25 +67,25 @@ export const ContactForm = () => {
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'your_service_id';
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'your_template_id';
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'your_public_key';
-
+      console.log("Envoi email...");
       await emailjs.send(
-        serviceId,
-        templateId,
+          serviceId,
+          templateId,
         {
           from_name: data.name,
           from_email: data.email,
-          phone: data.phone || 'Non renseigné',
+          phone: data.phone || "Non renseigné",
           event_type: data.eventType,
           message: data.message,
         },
         publicKey
       );
-
+        console.log("Email envoyé avec succès");
       toast({
         title: "Message envoyé !",
         description: "Je vous répondrai dans les plus brefs délais.",
       });
-
+      
       form.reset();
     } catch (error) {
       toast({

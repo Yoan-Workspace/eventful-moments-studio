@@ -1,4 +1,3 @@
-// Dans ton fichier de routes (App.tsx ou similaire)
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Index from "@/pages/Index";
 import Danse from "@/pages/Danse";
@@ -8,9 +7,10 @@ import EventDetail from "@/pages/EventDetail";         // Photos d'un album
 import Portfolio from "@/pages/Portfolio";             // Ancien système (optionnel)
 import MentionsLegales from "@/pages/MentionsLegales";
 import PrivacyPolicy from "@/pages/PolitiqueConfidentialite";
-
+import { Toaster } from "@/components/ui/toaster"
 function App() {
   return (
+     <>
     <Router>
       <Routes>
         <Route path="/" element={<Index />} />
@@ -26,6 +26,8 @@ function App() {
         {/* <Route path="/old-portfolio/:category" element={<Portfolio />} /> */}
       </Routes>
     </Router>
+    <Toaster />
+    </>
   );
 }
 
