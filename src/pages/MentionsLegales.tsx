@@ -20,6 +20,9 @@ const MentionsLegales = () => {
           
           <div className="space-y-8 text-foreground/90">
             <section>
+               <p className="mb-4">
+                Dernière mise à jour : 25 novembre 2025 {/*  {new Date().toLocaleDateString('fr-FR')} */}
+              </p>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">1. Éditeur du site</h2>
               <p className="mb-2">
                 <strong>Raison sociale :</strong> Julie Montbeyre / Julie Montbeyre Photographie<br />

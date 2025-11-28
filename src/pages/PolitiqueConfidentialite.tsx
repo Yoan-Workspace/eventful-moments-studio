@@ -21,7 +21,7 @@ const PolitiqueConfidentialite = () => {
           <div className="space-y-8 text-foreground/90">
             <section>
               <p className="mb-4">
-                Dernière mise à jour : {new Date().toLocaleDateString('fr-FR')}
+                Dernière mise à jour : 25 novembre 2025 {/*  {new Date().toLocaleDateString('fr-FR')} */}
               </p>
               <p>
                 La présente politique de confidentialité définit et vous informe de la manière dont Julie Montbeyre 

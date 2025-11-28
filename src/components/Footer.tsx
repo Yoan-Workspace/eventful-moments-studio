@@ -110,21 +110,21 @@ export const Footer = () => {
               {/* Développeur */}
               <li className="pt-4 mt-4 border-t border-primary-foreground/20">
                 <div className="flex items-center gap-2 text-primary-foreground/60 text-xs">
-                  <span>Développé avec</span>
-                  <button
-                    onClick={handleHeartClick}
-                    className="text-red-500 hover:scale-125 transition-transform cursor-pointer focus:outline-none"
-                    aria-label="Cliquez pour des confettis !"
-                  >
-                    <Heart className="w-4 h-4 fill-current" />
-                  </button>
+                 <button
+  onClick={handleHeartClick}
+  className="flex flex-col items-center text-red-500 hover:scale-125 transition-transform cursor-pointer focus:outline-none"
+  aria-label="Cliquez pour des confettis !"
+>
+  <span>Développé avec</span>
+  <Heart className="w-4 h-4 fill-current mt-1" />
+</button>
                   <span>par</span>
                   <div className="relative inline-block">
                     <button
                       onClick={handleEmailClick}
                       className="text-accent hover:underline cursor-pointer font-medium"
                     >
-                      yoansoussand@gmail.com
+                     Yoan Soussand - yoansoussand@gmail.com
                     </button>
                     {showCopied && (
                       <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground px-2 py-1 rounded text-xs whitespace-nowrap animate-fade-in">
