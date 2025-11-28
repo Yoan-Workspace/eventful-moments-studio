@@ -113,7 +113,7 @@ export default {
                   },
                   prepare(selection) {
                   const {title, media, width, height} = selection;
-                  const size = width && height ? `L${width}× H${height}px` : 'Taille inconnue';
+                  const size = width && height ? `L${width} × H${height}px` : 'Taille inconnue';
     
                   return {
                   title: title || 'Photo',
