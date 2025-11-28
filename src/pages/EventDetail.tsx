@@ -8,7 +8,7 @@ import Masonry from 'react-masonry-css';
 const categoryTitles: Record<string, string> = {
   spectacle: "Spectacles",
   studio: "Studio",
-  festival: "Festivals",
+ // festival: "Festivals",
   mariage: "Mariages",
   bapteme: "Baptêmes",
   evenement: "Événements",

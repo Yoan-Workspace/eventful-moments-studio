@@ -7,7 +7,7 @@ import { Footer } from "@/components/Footer";
 const categoryTitles: Record<string, string> = {
   spectacle: "Spectacles",
   studio: "Studio",
-  festival: "Festivals",
+ // festival: "Festivals",
   mariage: "Mariages",
   bapteme: "Baptêmes",
   evenement: "Événements",
@@ -16,7 +16,7 @@ const categoryTitles: Record<string, string> = {
 const categoryDescriptions: Record<string, string> = {
   spectacle: "Capturer la magie et l'énergie de vos performances scéniques",
   studio: "Des shootings professionnels en environnement contrôlé",
-  festival: "L'ambiance unique de vos événements culturels",
+ // festival: "L'ambiance unique de vos événements culturels",
   mariage: "Les plus beaux moments de votre union",
   bapteme: "La tendresse de ces instants précieux",
   evenement: "Des instants conviviaux pleins de vie et d'élégance",
@@ -45,8 +45,8 @@ const PortfolioEvents = () => {
     }
   };
 
-  const isDanseCategory = ["spectacle", "studio", "festival"].includes(category || "");
-  const backLink = isDanseCategory ? "/Danse" : "/particuliers";
+  const isDanseCategory = ["spectacle", "studio"].includes(category || "");
+  const backLink = isDanseCategory ? "/Danse" : "/MomentDeVie";
 
   const formatDate = (dateString?: string) => {
     if (!dateString) return null;

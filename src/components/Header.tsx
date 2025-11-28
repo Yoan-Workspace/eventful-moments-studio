@@ -59,7 +59,7 @@ export const Header = () => {
               Danse
             </Link>
             <Link
-              to="/particuliers"
+              to="/MomentDeVie"
               className="text-foreground hover:text-accent transition-smooth font-medium"
             >
               Moments de vie
@@ -132,11 +132,11 @@ export const Header = () => {
                 </Link>
 
                 <Link
-                  to="/particuliers"
+                  to="/MomentDeVie"
                   onClick={() => setMobileOpen(false)}
                   className="text-foreground text-lg font-semibold py-2"
                 >
-                  Particuliers
+                  Moment De Vie
                 </Link>
 
                 <button

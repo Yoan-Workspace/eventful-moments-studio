@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { Header } from "@/components/Header";
 import spectacleImg from "@/assets/JM-spectacle-portrait.jpg";
 import studioImg from "@/assets/JM-studio-portrait.jpg";
-import festivalImg from "@/assets/JM-festival-portrait.jpg";
+//import festivalImg from "@/assets/JM-festival-portrait.jpg";
 import { Footer } from "@/components/Footer";
 const categories = [
   {
@@ -19,12 +19,6 @@ const categories = [
     title: "Studio",
     description: "Shootings professionnels en environnement contrôlé",
     image: studioImg,
-  },
-  {
-    id: "festival",
-    title: "Festivals",
-    description: "L'énergie et l'ambiance de vos événements culturels",
-    image: festivalImg,
   },
 ];
 
@@ -43,9 +37,8 @@ const Danse = () => {
             <p className="text-xl text-muted-foreground max-w-8xl mx-auto">
              Passionée de danse, je capture la puissance des mouvements autant que la delicatesse des émotions, sur scène comme en studio. J'aime figer un saut, un tour, une expression, souligner la technique des danseurs, l'ambiance des lumières et l'énergie de la chorégraphie. Quand le rideau se ferme, que la musique s'éteint et que les maquillages s'effacent, il reste les images pour prolonger la danse et garder une trace de son souffle.
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-7 max-w-5xl mx-auto">
+          </div>  {/* Portfolio Categories md:grid-cols-3 et max-w-5xl si 3 catégories */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-7 max-w-2xl mx-auto">
             {categories.map((category) => {
               return (
                 <Link key={category.id} to={`/portfolio/${category.id}`}>

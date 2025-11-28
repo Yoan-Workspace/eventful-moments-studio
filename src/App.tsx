@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Index from "@/pages/Index";
 import Danse from "@/pages/Danse";
-import Particuliers from "@/pages/Particuliers";
+import MomentDeVie from "@/pages/MomentDeVie";
 import PortfolioEvents from "@/pages/PortfolioEvents"; // Liste des albums
 import EventDetail from "@/pages/EventDetail";         // Photos d'un album
 import Portfolio from "@/pages/Portfolio";             // Ancien système (optionnel)
@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/Danse" element={<Danse />} />
-        <Route path="/particuliers" element={<Particuliers />} />
+        <Route path="/MomentDeVie" element={<MomentDeVie />} />
         
         {/* Nouvelle structure avec albums */}
         <Route path="/portfolio/:category" element={<PortfolioEvents />} />

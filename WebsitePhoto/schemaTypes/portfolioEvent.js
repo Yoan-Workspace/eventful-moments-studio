@@ -22,7 +22,7 @@ export default {
         list: [
           {title: 'Spectacle', value: 'spectacle'},
           {title: 'Studio', value: 'studio'},
-          {title: 'Festival', value: 'festival'},
+         // {title: 'Festival', value: 'festival'},
           {title: 'Mariage', value: 'mariage'},
           {title: 'Baptême', value: 'bapteme'},
           {title: 'Événement', value: 'evenement'}

@@ -29,7 +29,7 @@ const categories = [
   },
 ];
 
-const Particuliers = () => {
+const MomentDeVie = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -85,4 +85,4 @@ const Particuliers = () => {
   );
 };
 
-export default Particuliers;
+export default MomentDeVie;

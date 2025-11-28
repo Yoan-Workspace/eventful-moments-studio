@@ -47,7 +47,7 @@ const Index = () => {
               </div>
             </Link>
 
-            <Link to="/particuliers" className="w-full md:w-auto">
+            <Link to="/MomentDeVie" className="w-full md:w-auto">
               <div className="group bg-card/95 backdrop-blur-sm p-8 rounded-lg elegant-shadow hover:shadow-2xl transition-smooth hover:scale-105">
                 <img src={WeedingRing} className="w-16 h-16 mx-auto mb-4 text-accent" alt="Moments de vie" />
                 <h3 className="text-2xl font-serif mb-3 text-foreground">Moments de vie</h3>
