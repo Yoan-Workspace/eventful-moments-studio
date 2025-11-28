@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 import { elegantButtonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
 import { Header } from "@/components/Header";
-import mariageImg from "@/assets/category-mariage.jpg";
-import baptemeImg from "@/assets/category-bapteme.jpg";
-import cocktailImg from "@/assets/category-cocktail.jpg";
+import mariageImg from "@/assets/JM-mariage-portrait.jpg";
+import baptemeImg from "@/assets/JM-bapteme-portrait.jpg";
+import evenementImg from "@/assets/JM-evenement-prive-portrait.jpg";
 import { Footer } from "@/components/Footer";
 
 const categories = [
@@ -25,7 +25,7 @@ const categories = [
     id: "evenement",
     title: "Événements",
     description: "Des instants conviviaux pleins de vie et d'élégance",
-    image: cocktailImg,
+    image: evenementImg,
   },
 ];
 
@@ -46,16 +46,16 @@ const Particuliers = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-7 max-w-5xl mx-auto">
             {categories.map((category) => {
               return (
                 <Link key={category.id} to={`/portfolio/${category.id}`}>
                   <div className="group bg-card rounded-lg elegant-shadow hover:shadow-2xl transition-smooth hover:scale-105 h-full overflow-hidden">
-                    <div className="relative h-80 overflow-hidden">
+                    <div className="relative h-120 overflow-hidden">
                       <img 
                         src={category.image} 
                         alt={category.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-smooth"
+                        className="w-full h-auto group-hover:scale-110 transition-smooth"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     </div>
