@@ -6,8 +6,8 @@ const MentionsLegales = () => {
   return (
     <>
       <Helmet>
-        <title>Mentions Légales - Photographe Événementiel dernière mise à jour 25 novembre 2025</title>
-        <meta name="description" content="Mentions légales du site photographe événementiel" />
+        <title>Mentions Légales - Photographe évènementiel dernière mise à jour 25 novembre 2025</title>
+        <meta name="description" content="Mentions légales du site photographe évènementiel" />
       </Helmet>
       
       <div className="min-h-screen bg-background">

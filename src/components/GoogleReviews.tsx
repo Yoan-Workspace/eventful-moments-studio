@@ -7,7 +7,7 @@ const reviews = [
     id: 1,
     author: "Mylène Bonot",
     rating: 5,
-    text: "Julie est une excellente photographe, à l écoute et professionnelle. Je l ai choisie pour le baptême de ma fille. Elle a su photographier l événement de sorte que l atmosphère est parfaitement reflétée sur les photos.",
+    text: "Julie est une excellente photographe, à l écoute et professionnelle. Je l ai choisie pour le baptême de ma fille. Elle a su photographier l évènement de sorte que l atmosphère est parfaitement reflétée sur les photos.",
     date: "Il y a 5 mois",
     avatar: "https://ui-avatars.com/api/?name=Mylène+Bonot&background=random"
   },
@@ -15,7 +15,7 @@ const reviews = [
     id: 2,
     author: "Rénaté Mattei",
     rating: 5,
-    text: "Un grand merci pour votre travail exceptionnel lors de notre événement. Vos photos capturent parfaitement l'atmosphère et les moments précieux de cette journée. Votre professionnalisme et votre œil artistique ont vraiment fait la différence. Je recommande vivement julie pour vos évènements !",
+    text: "Un grand merci pour votre travail exceptionnel lors de notre évènement. Vos photos capturent parfaitement l'atmosphère et les moments précieux de cette journée. Votre professionnalisme et votre œil artistique ont vraiment fait la différence. Je recommande vivement julie pour vos évènements !",
     date: "Il y a 5 mois",
     avatar: "https://ui-avatars.com/api/?name=JRénaté+Mattei&background=random"
   },

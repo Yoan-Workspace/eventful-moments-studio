@@ -47,7 +47,7 @@ export default {
           //{title: 'Festival', value: 'festival'},
           {title: 'Mariage', value: 'mariage'},
           {title: 'Baptême', value: 'bapteme'},
-          {title: 'Événement', value: "evenement"}
+          {title: 'évènement', value: "evenement"}
         ]
       },
       validation: Rule => Rule.required()

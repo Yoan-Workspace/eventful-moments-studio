@@ -4,12 +4,12 @@ import FixedArrayInput from '../components/FixedArrayInput'
 
 export default {
   name: 'portfolioEvent',
-  title: 'Album / Événement',
+  title: 'Album / évènement',
   type: 'document',
   fields: [
     {
       name: 'title',
-      title: 'Nom de l\'événement',
+      title: 'Nom de l\'évènement',
       type: 'string',
       description: 'Ex: "Mariage de Sophie & Marc" ou "Festival Jazz 2024"',
       validation: Rule => Rule.required()
@@ -25,7 +25,7 @@ export default {
          // {title: 'Festival', value: 'festival'},
           {title: 'Mariage', value: 'mariage'},
           {title: 'Baptême', value: 'bapteme'},
-          {title: 'Événement', value: 'evenement'}
+          {title: 'Evènement', value: 'evenement'}
         ],
         layout: 'radio'
       },
@@ -48,7 +48,7 @@ export default {
     },
     {
       name: 'eventDate',
-      title: 'Date de l\'événement',
+      title: 'Date de l\'évènement',
       type: 'date',
       options: {
         dateFormat: 'DD/MM/YYYY',
@@ -66,7 +66,7 @@ export default {
     },
     {
       name: 'images',
-      title: 'Photos de l\'événement',
+      title: 'Photos de l\'évènement',
       type: 'array',
       of: [
         {
@@ -166,10 +166,10 @@ export default {
     },
     {
       name: 'description',
-      title: 'Description de l\'événement',
+      title: 'Description de l\'évènement',
       type: 'text',
       rows: 4,
-      description: 'Contexte, anecdotes, détails sur l\'événement'
+      description: 'Contexte, anecdotes, détails sur l\'évènement'
     },
     {
       name: 'featured',

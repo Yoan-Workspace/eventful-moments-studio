@@ -34,8 +34,8 @@ const contactSchema = z.object({
     .or(z.literal("")),
   eventType: z.string()
     .trim()
-    .min(2, { message: "Le type d'événement doit contenir au moins 2 caractères" })
-    .max(100, { message: "Le type d'événement doit contenir moins de 100 caractères" }),
+    .min(2, { message: "Le type d'évènement doit contenir au moins 2 caractères" })
+    .max(100, { message: "Le type d'évènement doit contenir moins de 100 caractères" }),
   message: z.string()
     .trim()
     .min(10, { message: "Le message doit contenir au moins 10 caractères" })
@@ -180,7 +180,7 @@ export const ContactForm = () => {
                 name="eventType"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Type d'événement *</FormLabel>
+                    <FormLabel>Type d'évènement *</FormLabel>
                     <FormControl>
                       <Input placeholder="Ex: Mariage, Spectacle, Festival..." {...field} />
                     </FormControl>

@@ -6,7 +6,7 @@ const PolitiqueConfidentialite = () => {
   return (
     <>
       <Helmet>
-        <title>Politique de Confidentialité - Photographe Événementiel dernière mise à jour 25 novembre 2025</title>
+        <title>Politique de Confidentialité - Photographe évènementiel dernière mise à jour 25 novembre 2025</title>
         <meta name="description" content="Politique de confidentialité et protection des données personnelles" />
       </Helmet>
       

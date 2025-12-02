@@ -10,13 +10,13 @@ const categoryTitles: Record<string, string> = {
  // festival: "Festivals",
   mariage: "Mariages",
   bapteme: "Baptêmes",
-  evenement: "Événements",
+  evenement: "Evènements",
 };
 
 const categoryDescriptions: Record<string, string> = {
   spectacle: "Capturer la magie et l'énergie de vos performances scéniques",
   studio: "Des shootings professionnels en environnement contrôlé",
- // festival: "L'ambiance unique de vos événements culturels",
+ // festival: "L'ambiance unique de vos évènements culturels",
   mariage: "Les plus beaux moments de votre union",
   bapteme: "La tendresse de ces instants précieux",
   evenement: "Des instants conviviaux pleins de vie et d'élégance",

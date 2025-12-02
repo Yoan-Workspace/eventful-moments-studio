@@ -35,7 +35,7 @@ const Danse = () => {
               Danse
             </h1>
             <p className="text-xl text-muted-foreground max-w-8xl mx-auto">
-             Passionée de danse, je capture la puissance des mouvements autant que la delicatesse des émotions, sur scène comme en studio. J'aime figer un saut, un tour, une expression, souligner la technique des danseurs, l'ambiance des lumières et l'énergie de la chorégraphie. Quand le rideau se ferme, que la musique s'éteint et que les maquillages s'effacent, il reste les images pour prolonger la danse et garder une trace de son souffle.
+             Passionnée de danse, je capture la puissance des mouvements autant que la délicatesse des émotions, sur scène comme en studio. J'aime figer un saut, un tour, une expression, souligner la technique des danseurs, l'ambiance des lumières et l'énergie de la chorégraphie. Quand le rideau se ferme, que la musique s'éteint et que les maquillages s'effacent, il reste les images pour prolonger la danse et garder une trace de son souffle.
             </p>
           </div>  {/* Portfolio Categories md:grid-cols-3 et max-w-5xl si 3 catégories */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-7 max-w-2xl mx-auto">

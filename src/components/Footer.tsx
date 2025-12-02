@@ -63,7 +63,7 @@ export const Footer = () => {
               <h3 className="text-xl font-serif font-bold">Julie Montbeyre</h3>
             </div>
             <p className="text-primary-foreground/80 text-sm leading-relaxed">
-              Photographe événementiel passionnée, spécialisée dans l'immortalisation de vos moments uniques avec créativité et sensibilité.
+              Photographe évènementielle passionnée, spécialisée dans l'immortalisation de vos moments uniques avec créativité et sensibilité.
             </p>
           </div>
 

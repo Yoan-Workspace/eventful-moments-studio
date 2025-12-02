@@ -27,7 +27,7 @@
    Nom: {{from_name}}
    Email: {{from_email}}
    Téléphone: {{phone}}
-   Type d'événement: {{event_type}}
+   Type d'évènement: {{event_type}}
 
    Message:
    {{message}}
@@ -61,7 +61,7 @@ Assurez-vous que votre template EmailJS utilise ces variables :
 - `{{from_name}}` - Nom du contact
 - `{{from_email}}` - Email du contact
 - `{{phone}}` - Téléphone du contact
-- `{{event_type}}` - Type d'événement
+- `{{event_type}}` - Type d'évènement
 - `{{message}}` - Message du contact
 
 ## Limites du plan gratuit

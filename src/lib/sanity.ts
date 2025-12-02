@@ -24,7 +24,7 @@ export interface PortfolioImage {
   description?: string;
 }
 
-// Types pour les albums/événements
+// Types pour les albums/évènements
 export interface PortfolioEvent {
   _id: string;
   title: string;
@@ -57,7 +57,7 @@ export const getPortfolioByCategory = async (category: string) => {
   return await sanityClient.fetch<PortfolioImage[]>(query, { category });
 };
 
-// Queries pour les albums/événements (nouveau système)
+// Queries pour les albums/évènements (nouveau système)
 // Ne récupère QUE les albums publics pour la liste
 export const getEventsByCategory = async (category: string) => {
   const query = `*[_type == "portfolioEvent" && category == $category && visibility == "public"] | order(order asc, eventDate desc) {
