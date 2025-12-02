@@ -56,6 +56,7 @@ export default {
           cream: "hsl(var(--elegant-cream))",
           beige: "hsl(var(--elegant-beige))",
         },
+        pastelPink: "#fcf6f7ff", // Rose pastel doux
       },
       fontFamily: {
         serif: ['Playfair Display', 'Georgia', 'serif'],

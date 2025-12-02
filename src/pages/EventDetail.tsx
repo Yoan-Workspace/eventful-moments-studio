@@ -84,7 +84,7 @@ const totalPhotos = event?.imageCount ?? event?.images
   ?.reduce((acc, seq) => acc + (seq.photos?.length ?? 0), 0) ?? 0;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-pastelPink">
       {/* Header */}
       <header className="bg-card border-b border-border sticky top-0 z-50 backdrop-blur-sm bg-card/95">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">

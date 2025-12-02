@@ -98,7 +98,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-muted/30">
+    <section id="contact" className="py-20 bg-pastelPink">
       <div className="container mx-auto px-4 max-w-3xl">
         <div className="text-center mb-12">
           <Mail className="w-16 h-16 mx-auto mb-4 text-accent" />

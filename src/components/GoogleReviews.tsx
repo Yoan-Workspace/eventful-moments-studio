@@ -38,7 +38,7 @@ export const GoogleReviews = () => {
   const googleBusinessUrl = "https://www.google.com/search?newwindow=1&sca_esv=0b1aadbb54d51ce1&sxsrf=AE3TifN-AcxMF8PiATBtIVYbbbvtYGvEEQ:1763979034600&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E_5I3e6yHT2uELYJhspHkV0XyWLtFeDBMnUU15gCIQTOa7WadX-ofo8PHVdK9fD5iAoqFubkoXdwRZcO1oP54SO5NQip1d9cq7SFVmHZZzmJ2xomLA%3D%3D&q=Julie+Montbeyre+Photographie+Avis&sa=X&ved=2ahUKEwjoqP79xYqRAxXTDjQIHT-WOcIQ0bkNegQIOBAC&biw=1606&bih=764&dpr=2";
 
   return (
-    <section className="py-20 bg-secondary/30">
+    <section className="py-20 bg-pastelPink">
       <div className="container mx-auto px-4">
         {/* En-tête avec statistiques */}
         <div className="text-center mb-12">
