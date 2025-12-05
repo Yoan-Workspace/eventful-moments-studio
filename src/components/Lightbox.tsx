@@ -78,7 +78,7 @@ const Lightbox = ({ images, currentIndex, onClose, onNext, onPrevious, urlFor }:
           <img
             src={urlFor(currentImage.image).width(1920).quality(90).url()}
             alt={currentImage.title}
-            className="max-h-[70vh] max-w-full object-contain rounded-lg"
+            className="max-h-[70vh] max-w-full object-contain"
           />
         </div>
 
