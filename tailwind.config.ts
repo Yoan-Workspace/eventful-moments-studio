@@ -60,6 +60,7 @@ export default {
       fontFamily: {
         serif: ['Playfair Display', 'Georgia', 'serif'],
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        handwriting: ['Pacifico', 'cursive'],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -91,4 +92,5 @@ export default {
     },
   },
   plugins: [require("tailwindcss-animate")],
+  
 } satisfies Config;
