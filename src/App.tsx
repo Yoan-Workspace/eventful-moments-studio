@@ -18,6 +18,7 @@ function App() {
         <Route path="/MomentDeVie" element={<MomentDeVie />} />
         
         {/* Nouvelle structure avec albums */}
+        <Route path="/portfolio/:category/:slug" element={<EventDetail />} />
         <Route path="/portfolio/:category" element={<PortfolioEvents />} />
         <Route path="/portfolio/:category/:slug" element={<EventDetail />} />
         <Route path="/MentionsLegales" element={<MentionsLegales />} />
