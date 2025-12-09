@@ -61,6 +61,7 @@ export default {
         serif: ['Playfair Display', 'Georgia', 'serif'],
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
         handwriting: ['Pacifico', 'cursive'],
+        brush: ['"Brush Script MT"', '"Brush Script Std"', 'cursive'],
       },
       borderRadius: {
         lg: "var(--radius)",

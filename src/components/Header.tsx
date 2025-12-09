@@ -45,7 +45,12 @@ export const Header = () => {
               alt="Logo Photographe" 
               className="h-12 w-auto object-contain"
             />
-            <span className="font-handwriting text-2xl text-foreground">
+           <span 
+             className="font-brush text-foreground"
+              style={{ 
+              fontSize: '3rem',
+              lineHeight: '1.1'
+              }}>
               Julie Montbeyre Photographie
             </span>
           </Link>
